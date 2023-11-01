@@ -72,11 +72,11 @@ def a():
     ax = olib.setSpace(ax, X, Y, xlabel="$R$[$\Omega$]", ylabel="$P$[W]",
                        title="Abb.1: Leistungen bei einer RC-Schaltung")
     ax, model_P_w = olib.plotData(ax, X[0], Xerr[0], Y[0], Yerr[0],
-                                  label=r"$P_w$", color="r", polyfit=0, yscaleing=1)
+                                  label=r"$P_w$", color="r", polyfit=0, yscaleing=1, fmt=".", errorbar=False)
     ax, model_P_s = olib.plotData(ax, X[1], Xerr[1], Y[1], Yerr[1],
-                                  label=r"$P_s$", color="g", polyfit=0)
+                                  label=r"$P_s$", color="g", polyfit=0, fmt=".", errorbar=False)
     ax, model_P_s_cos_phi = olib.plotData(ax, X[2], Xerr[2], Y[2], Yerr[2],
-                                          label=r"$P_s\cos{\phi}$", color="b", polyfit=0)
+                                          label=r"$P_s\cos{\phi}$", color="b", polyfit=0, fmt=".", errorbar=False)
     ax = olib.plotLine(ax, R, np.zeros_like(P_s)+P_w_max, label="$P_{W, max}$")
     plt.legend()
     #plt.show()
