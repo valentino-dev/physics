@@ -66,8 +66,6 @@ def CSV_to_PDF(pandas_table, output_file_name):
     options = {'page-size': 'Letter', 'margin-top': '0mm',
                'margin-right': '0mm', 'margin-bottom': '0mm', 'margin-left': '0mm'}
 
-    # pdfkit.configuration(
-    #    wkhtmltopdf=r"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe")
     pdfkit.from_string(html_table, output_file_name, options=options)
 
 
@@ -76,18 +74,12 @@ def setSpace(axis, allX, allY, title="plot", xlabel="x", ylabel="y", border=0.1,
     axis.set_ylabel(ylabel)
     axis.set_title(title)
 
-    # xRange = np.round(np.max(allX)-np.min(allX), 2)
     xRange = np.max(allX)-np.min(allX)
-    # yRange = np.round(np.max(allY)-np.min(allY), 2)
     yRange = np.max(allY)-np.min(allY)
     print(yRange)
 
     xstep = np.round((xRange * resolution)*2, -1)/2
-    # xstep = xRange * resolution
-    # xstep = 10
     ystep = np.round((yRange * resolution)*2, -1)/2
-    # ystep = yRange * resolution
-    # ystep = 10
     print(ystep)
 
     xLimits = [math.floor((np.min(allX)-xRange*border)/10)*10,
@@ -117,13 +109,17 @@ def plotLine(axis, x, y, label=None, linewidth=0.7, linestyle="solid", color="r"
     return axis
 
 
-def plotData(axis, X, Xerr, Y, Yerr, label=None, capsize=2, elinewidth=0.5, fmt=",", polyfit=1, color="r", xscaleing=1, yscaleing=1):
+def plotData(axis, X, Xerr, Y, Yerr, label=None, capsize=2, elinewidth=0.5, fmt=",", polyfit=1, color="r", xscaleing=1, yscaleing=1, errorbar=True):
     X = X*xscaleing
     Xerr = Xerr*xscaleing
     Y = Y*yscaleing
     Yerr = Yerr*yscaleing
-    axis.errorbar(X, Y, Yerr, Xerr, label=label, capsize=capsize,
-                  elinewidth=elinewidth, fmt=fmt, color=color)
+    if errorbar:
+        axis.errorbar(X, Y, Yerr, Xerr, label=label, capsize=capsize,
+                      elinewidth=elinewidth, fmt=fmt, color=color)
+    else:
+        axis.scatter(X, Y, label=label, marker="x", color=color, linewidth=0.6)
+
     model = None
 
     if polyfit != 0:
