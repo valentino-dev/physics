@@ -109,7 +109,7 @@ def plotLine(axis, x, y, label=None, linewidth=0.7, linestyle="solid", color="r"
     return axis
 
 
-def plotData(axis, X, Xerr, Y, Yerr, label=None, capsize=2, elinewidth=0.5, fmt=",", polyfit=1, color="r", xscaleing=1, yscaleing=1, errorbar=True):
+def plotData(axis, X, Xerr, Y, Yerr, label=None, capsize=0, elinewidth=0.5, fmt=",", polyfit=1, color="r", xscaleing=1, yscaleing=1, errorbar=True):
     X = X*xscaleing
     Xerr = Xerr*xscaleing
     Y = Y*yscaleing

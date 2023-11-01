@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 plt.rcParams.update({"text.usetex": True,
                      "font.family": "serif"})
-execute = "f"
+execute = "abcdefg"
 # 238.a
 
 
@@ -33,29 +33,32 @@ def a():
     data["dU"] = dU
     data["dI"] = dU
     data["dP"] = dP_1
+
+    data2 = pd.DataFrame()
+
     R = data["U_2"]/data["I_1"]
     dR = ((dU/data["I_1"])**2+(data["U_2"]/data["I_1"]**2*dI)**2)**(1/2)
-    data["R"] = np.round(R, 2)
-    data["dR"] = np.round(dR, 2)
+    data2["R"] = np.round(R, 2)
+    data2["dR"] = np.round(dR, 2)
 
     cos_phi = data["U_2"]/data["U_1"]
-    print(cos_phi)
     dcos_phi = ((dU_R/data["U_1"])**2 +
                 (data["U_2"]/data["U_1"]**2*dU)**2)**(1/2)
-    data["cos_phi"] = np.round(cos_phi, 4)
-    data["d_cos_phi"] = np.round(dcos_phi, 4)
+    data2["cos_phi"] = np.round(cos_phi, 4)
+    data2["d_cos_phi"] = np.round(dcos_phi, 4)
 
     P_s = data["U_1"]*data["I_1"]
     dP_s = ((data["I_1"]*dU)**2+(data["U_1"]*dI)**2)**(1/2)
-    data["P_s"] = np.round(P_s, 2)
-    data["dP_s"] = np.round(dP_s, 2)
+    data2["P_s"] = np.round(P_s, 2)
+    data2["dP_s"] = np.round(dP_s, 2)
 
     P_s_cos_phi = data["U_2"]*data["I_1"]
     dP_s_cos_phi = ((data["I_1"]*dU_R)**2+(data["U_2"]*dI)**2)**(1/2)
-    data["P_s_cos_phi"] = np.round(P_s_cos_phi, 2)
-    data["dP_s_cos_phi"] = np.round(dP_s_cos_phi, 2)
+    data2["P_s_cos_phi"] = np.round(P_s_cos_phi, 2)
+    data2["dP_s_cos_phi"] = np.round(dP_s_cos_phi, 2)
 
-    olib.CSV_to_PDF(data, "238_a_Messungen.pdf")
+    olib.CSV_to_PDF(data, "238_a_Werte_1.pdf")
+    olib.CSV_to_PDF(data2, "238_b_Werte_2.pdf")
 
     U_eff = 47
     f = 50
@@ -101,7 +104,7 @@ def c():
     data["dU"] = dU
     data["dI"] = dU
     data["dP"] = dP_1
-    olib.CSV_to_PDF(data, "238_c_Werte.pdf")
+    olib.CSV_to_PDF(data, "238_c_Werte_3.pdf")
     data2 = pd.DataFrame()
     dP_2 = np.zeros_like(data["P_2"])+0.01
 
@@ -136,7 +139,7 @@ def c():
     data2["eta"] = np.round(etha, 4)
     data2["dEta"] = np.round(dEtha, 4)
     
-    olib.CSV_to_PDF(data2, "238_d_Werte.pdf")
+    olib.CSV_to_PDF(data2, "238_d_Werte_4.pdf")
 
 
     Y, X = np.array([data["P_1"], data["P_2"], P_V, P_Cu, P_Fe, etha*1e2]), np.array(
@@ -145,7 +148,6 @@ def c():
         [dI, dI, dI, dI, dI, dI])
 
     Yerr, Xerr = np.zeros_like(Yerr), np.zeros_like(Xerr)
-    print(Y)
 
     colors = ["#573DC2", "#C2573D", "#3DC257", "#36C9C9", "#C936C9", "#C9C936"]
     titles = ["$P_{W,1}$", "$P_{W,2}$", "$P_{V}$",
@@ -197,19 +199,34 @@ def g():
 
     X = data["I_2"]*1e2
     Xerr = dI*1e2
+
     quotion = data["U_2"]/data["U_1"]
     Y = quotion*1e2
     dQuotion = ((dU/data["U_1"])**2+(data["U_2"]/data["U_1"]**2*dU))
     Yerr = dQuotion*1e2
-    data = pd.DataFrame({"I_2": np.round(data["I_2"], 2), "dI_2": dI, "U_2/U_1": np.round(quotion, 4), "d(U_2/U_1)": np.round(dQuotion, 4)})
-    olib.CSV_to_PDF(data, "238_g_Werte.pdf")
+
+    sigma = 0.0225
+    dsigma = 0.0018
+    omega_L = 613
+    domega_L = 79
+    R_v = 0.6
+    R = data["U_2"]/data["I_2"]
+    dR = ((dU/data["I_2"])**2+(data["U_2"]/data["I_2"]**2*dI))
+
+    a = 1-(sigma/2)
+    da = 1/2*dsigma
+    y = a*R/(R+2*R_v)*(1+(sigma*omega_L/(R+2*R_v))**2)**(-1/2)
+
+    data = pd.DataFrame({"I_2": np.round(data["I_2"], 2), "dI_2": dI, "U_2/U_1": np.round(quotion, 4), "d(U_2/U_1)": np.round(dQuotion, 4), "U_2/U_1 (berechnet)": y})
+    olib.CSV_to_PDF(data, "238_g_Werte_5.pdf")
 
     fig, ax = plt.subplots()
-    ax = olib.setSpace(ax, X, Y, "Abb.5: Spannungsübertragung",
+    ax = olib.setSpace(ax, [X, data["I_2"]*1e2], [Y, y*1e2], "Abb.5: Spannungsübertragung",
                        xlabel=r"$I_2\cdot 10^{2}$[A]", ylabel="Verhältniss$\cdot 10^2$")
 
     ax, models = olib.plotData(
         ax, X, Xerr, Y, Yerr, polyfit=0, errorbar=False, label=r"$\frac{U_2}{U_1}$")
+    ax = olib.plotLine(ax, data["I_2"]*1e2, y*1e2, label=r"Berechnet: $\frac{U_2}{U_1}$")
 
     plt.legend()
     #plt.show()
@@ -233,7 +250,7 @@ def e():
     omega_L = data["U_1"][0]/data["I_1"][0]
     domega_L = ((dU[0]/data["I_1"][0])**2+(data["U_1"]
                 [0]/data["I_1"][0]**2*dI[0])**2)**(1/2)
-    print(f"omega_L: {omega_L}±{domega_L}")
+    print(f"e: omega_L: {omega_L}±{domega_L}")
 
 
 def f():
@@ -254,32 +271,35 @@ def f():
     domega_L = ((dU[0]/data["I_1"][0])**2+(data["U_1"]
                 [0]/data["I_1"][0]**2*dI[0])**2)**(1/2)
 
-    sigma1 = (1-np.array(data["I_2"])[-1]/np.array(data["I_1"])[-1])*2
-    dsigma1 = ((2*(1-np.array(data["I_2"])[-1]/np.array(data["I_1"])
-               [-1])/np.array(data["I_1"])[-1]*dI[0])**2+(2*(1-np.array(data["I_2"])[-1]/np.array(data["I_1"])
-                                                          [-1])*np.array(data["I_2"])[-1]/np.array(data["I_1"])[-1]**2*dI[0])**2)**(1/2)
+    sigma1 = 1-(np.array(data["I_2"])[-1]/np.array(data["I_1"])[-1])**2
+    dsigma1 = 2*(np.array(data["I_2"])[-1]/np.array(data["I_1"])[-1])*((1/np.array(data["I_1"])[-1]*dI[0])**2+(np.array(data["I_2"])[-1]/np.array(data["I_1"])[-1]**2*dI[0])**2)**(1/2)
+    #dsigma1 = ((2*(1-np.array(data["I_2"])[-1]/np.array(data["I_1"])
+    #           [-1])/np.array(data["I_1"])[-1]*dI[0])**2+(2*(1-np.array(data["I_2"])[-1]/np.array(data["I_1"])
+                                                          #[-1])*np.array(data["I_2"])[-1]/np.array(data["I_1"])[-1]**2*dI[0])**2)**(1/2)
 
-    sigma2 = (1-data["U_2"][0]/data["U_1"][0])*2
-    dsigma2 = ((2*(1-np.array(data["U_2"])[0]/np.array(data["U_1"])
-                [0])/np.array(data["U_1"])[0]*dI[0])**2+(2*(1-np.array(data["U_2"])[0]/np.array(data["U_1"])
-                                                        [0])*np.array(data["U_2"])[0]/np.array(data["U_1"])[0]**2*dI[0])**2)**(1/2)
+    sigma2 = 1-(data["U_2"][0]/data["U_1"][0])**2
+    dsigma2 = 2*(np.array(data["U_2"])[-1]/np.array(data["U_1"])[-1])*((1/np.array(data["U_1"])[-1]*dU[0])**2+(np.array(data["U_2"])[-1]/np.array(data["U_1"])[-1]**2*dU[0])**2)**(1/2)
+    #dsigma2 = ((2*(1-np.array(data["U_2"])[0]/np.array(data["U_1"])
+    #            [0])/np.array(data["U_1"])[0]*dI[0])**2+(2*(1-np.array(data["U_2"])[0]/np.array(data["U_1"])
+    #                                                    [0])*np.array(data["U_2"])[0]/np.array(data["U_1"])[0]**2*dI[0])**2)**(1/2)
 
-    sigma3 = (np.array(data["U_2"])[-1]/np.array(data["I_2"])[-1]) / (np.array(data["U_1"])[-1]/np.array(data["I_1"])[-1])
-    dsigma3= ((sigma3/np.array(data["U_2"])[-1]*dU[0])**2+(sigma3/np.array(data["I_2"])[-1]*dI[0])**2+(
-        sigma3/np.array(data["U_1"])[-1]*dU[0])**2+(sigma3/np.array(data["I_1"])[-1]*dI[0])**2)**(1/2)
+    sigma3 = (np.array(data["U_1"])[-1]/np.array(data["I_1"])[-1]) / (np.array(data["U_1"])[0]/np.array(data["I_1"])[0])
+    dsigma3= ((sigma3/np.array(data["U_1"])[-1]*dU[0])**2+(sigma3/np.array(data["I_1"])[-1]*dI[0])**2+(
+        sigma3/np.array(data["U_1"])[0]*dU[0])**2+(sigma3/np.array(data["I_1"])[0]*dI[0])**2)**(1/2)
 
     sigma4= data["U_1"][0]/np.array(data["I_2"])[-1]/omega_L
     dsigma4= ((sigma4/data["U_1"][0]*dU[0])**2+(sigma4/np.array(data["I_2"])[-1]*dI[0])**2+(sigma4/omega_L*domega_L)**2)**(1/2)
 
-    print(f"s1: {sigma1}±{dsigma1}, s2: {sigma2}±{dsigma2}, s3: {sigma3}±{dsigma3}, s4, {sigma4}±{dsigma4}")
+    av_sigma = np.mean([sigma1, sigma2, sigma3, sigma4])
+    d_av_sigma = ((dsigma1/4)**2+(dsigma2/4)**2+(dsigma3/4)**2+(dsigma4/4)**2)**(1/2)
+
+    print(f"f: s1: {sigma1}±{dsigma1}, s2: {sigma2}±{dsigma2}, s3: {sigma3}±{dsigma3}, s4, {sigma4}±{dsigma4}, av_sigma {av_sigma}±{d_av_sigma}")
 
 
 if "a" in execute:
     a()
 if "c" in execute:
     c()
-if "d" in execute:
-    d()
 if "e" in execute:
     e()
 if "f" in execute:
