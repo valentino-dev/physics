@@ -66,7 +66,7 @@ def h():
     Yerr = dphi/phi*1e2
     
     fig, ax = plt.subplots()
-    ax = setSpace(ax, X, Y, title="Abb. 2: 236.h", xlabel=r"$t\cdot10^1$", ylabel=r"$\log{\varphi}\cdot10^2$")
+    ax = setSpace(ax, X, Y, title="Abb. 2: 236.h", xlabel=r"$t\cdot10^1$[s]", ylabel=r"$\log{\varphi}\cdot10^2$")
     ax = plotData(ax, X, Xerr, Y, Yerr, label="Messdaten", fmt="x")
     
     plt.savefig("236/Abb_2_236_h", dpi=500)
