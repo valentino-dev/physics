@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 plt.rcParams.update({"text.usetex": True,
                      "font.family": "serif"})
-execute = "abcdefg"
+execute = "f"
 # 238.a
 
 
@@ -57,13 +57,13 @@ def a():
     data2["P_s_cos_phi"] = np.round(P_s_cos_phi, 2)
     data2["dP_s_cos_phi"] = np.round(dP_s_cos_phi, 2)
 
-    olib.CSV_to_PDF(data, "238_a_Werte_1.pdf")
-    olib.CSV_to_PDF(data2, "238_b_Werte_2.pdf")
+    #olib.CSV_to_PDF(data, "238_a_Werte_1.pdf")
+    #olib.CSV_to_PDF(data2, "238_b_Werte_2.pdf")
 
     U_eff = 47
     f = 50
     C = 80e-6
-    P_w_max = 1/2*U_eff**2*f*np.pi*C
+    P_w_max = 1/2*U_eff**2*f*np.pi*C*2
 
     fig, ax = plt.subplots()
     X, Y = np.array([R, R, R]), np.array([data["P_1"], P_s, P_s_cos_phi])
@@ -80,7 +80,8 @@ def a():
     ax = olib.plotLine(ax, R, np.zeros_like(P_s)+P_w_max, label="$P_{W, max}$")
     plt.legend()
     #plt.show()
-    plt.savefig("238_b_Abb_1", dpi=500)
+    print(P_w_max)
+    #plt.savefig("238_b_Abb_1", dpi=500)
 
 
 def c():
