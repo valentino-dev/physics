@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 plt.rcParams.update({"text.usetex": True,
                      "font.family": "serif"})
-execute = "h"
+execute = "c"
 
 def c():
     print("Executing c")
@@ -14,7 +14,7 @@ def c():
     R2 = 5
     U0 = 2.2
     X = data["R"]#*1e-2
-    Xerr = None
+    Xerr = np.zeros_like(data["R"].to_numpy()) 
     Y = 1/data["phi"]#*1e3
     Yerr = 1/data["phi"]**2*data["dphi"]#*1e3
     fig, ax = plt.subplots()
@@ -60,16 +60,18 @@ def h():
     phi = data["phi"].to_numpy()
     dphi = data["dphi"].to_numpy()
     
-    X = t*1e1
-    Xerr = dt*1e1
-    Y = np.log(phi)*1e2
-    Yerr = dphi/phi*1e2
+    X = t
+    Xerr = dt
+    Y = np.log(phi)
+    Yerr = dphi/phi
     
     fig, ax = plt.subplots()
-    ax = setSpace(ax, X, Y, title="Abb. 2: 236.h", xlabel=r"$t\cdot10^1$[s]", ylabel=r"$\log{\varphi}\cdot10^2$")
-    ax = plotData(ax, X, Xerr, Y, Yerr, label="Messdaten", fmt="x")
+    #ax = setSpace(ax, X, Y, title="Abb. 2: 236.h", xlabel=r"$t\cdot10^1$[s]", ylabel=r"$\log{\varphi}\cdot10^2$")
+    ax, model = plotData(ax, X, Xerr, Y, Yerr, label="Messdaten", fmt="x")
+    C = 10e-6
+    print((model.m/C, model.V_m**(1/2)/C))
+    #plt.savefig("236/Abb_2_236_h", dpi=500)
     
-    plt.savefig("236/Abb_2_236_h", dpi=500)
     
     
 for char in execute:

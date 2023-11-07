@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 plt.rcParams.update({"text.usetex": True,
                      "font.family": "serif"})
-execute = "f"
+execute = "a"
 # 238.a
 
 
@@ -63,8 +63,9 @@ def a():
     U_eff = 47
     f = 50
     C = 80e-6
-    P_w_max = 1/2*U_eff**2*f*np.pi*C*2
-
+    R_test = 1/(f*np.pi*2*C)
+    P_w_max = 1/2*U_eff**2/R_test
+    print("R", R_test)
     fig, ax = plt.subplots()
     X, Y = np.array([R, R, R]), np.array([data["P_1"], P_s, P_s_cos_phi])
     Xerr, Yerr = np.array([dR, dR, dR]), np.array(
@@ -77,11 +78,11 @@ def a():
                                   label=r"$P_s$", color="g", polyfit=0, fmt=".", errorbar=False)
     ax, model_P_s_cos_phi = olib.plotData(ax, X[2], Xerr[2], Y[2], Yerr[2],
                                           label=r"$P_s\cos{\phi}$", color="b", polyfit=0, fmt=".", errorbar=False)
-    ax = olib.plotLine(ax, R, np.zeros_like(P_s)+P_w_max, label="$P_{W, max}$")
+    ax.scatter(R_test, P_w_max, label="$P_{W, max}$")
     plt.legend()
     #plt.show()
     print(P_w_max)
-    #plt.savefig("238_b_Abb_1", dpi=500)
+    plt.savefig("238_b_Abb_1", dpi=500)
 
 
 def c():
