@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 plt.rcParams.update({"text.usetex": True,
                      "font.family": "serif"})
-execute = "c"
+execute = "h"
 
 def c():
     print("Executing c")
@@ -27,7 +27,7 @@ def c():
     
     Rg = model.n/(R1+R2)*cI*U0*R2
     dRg = 11
-    #dRg = ((model.V_n**(1/2)/(R1+R2)*cI*U0*R2)**2+(model.n/(R1+R2)*cI**2*U0*R2*dcI)**2)**(1/2)
+    dRg = ((model.V_n**(1/2)/(R1+R2)*cI*U0*R2)**2+(model.n/(R1+R2)*U0*R2*dcI)**2)**(1/2)
     print(Rg, "+-", dRg)
     
     model.printParameter()
@@ -69,6 +69,7 @@ def h():
     #ax = setSpace(ax, X, Y, title="Abb. 2: 236.h", xlabel=r"$t\cdot10^1$[s]", ylabel=r"$\log{\varphi}\cdot10^2$")
     ax, model = plotData(ax, X, Xerr, Y, Yerr, label="Messdaten", fmt="x")
     C = 10e-6
+    print(model.printParameter())
     print((model.m/C, model.V_m**(1/2)/C))
     #plt.savefig("236/Abb_2_236_h", dpi=500)
     

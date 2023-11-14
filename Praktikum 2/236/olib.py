@@ -17,8 +17,6 @@ class model:
 
 
 def roundToError(x, xerr):
-    if x != np.array:
-        x = [x]
     error_digits = np.floor(np.log10(xerr)).astype("int")
     roundedx = []
     roundedxerr = []
