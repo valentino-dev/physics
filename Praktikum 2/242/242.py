@@ -2,10 +2,9 @@ from olib import *
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-
-#plt.rcParams.update({"text.usetex": True,
-                     #"font.family": "serif"})
-exec = "c"
+plt.rcParams.update({"text.usetex": True,
+                     "font.family": "serif"})
+exec = "b"
 
 
 
@@ -32,8 +31,8 @@ def b():
     
     X = np.tile(U, 2)
     Xerr = np.zeros_like(X)
-    Y = (r*I)**2
-    Yerr = 2*r*I*dd1
+    Y = (r*I)**2*1e5
+    Yerr = 2*r*I*dd1*1e5
     print(X.shape, Xerr.shape, Y.shape, Yerr.shape)
     fig, ax = plt.subplots()
     print(X, Y)
@@ -47,6 +46,7 @@ def b():
     Be = 1/2*(4/5)**(3/2)*mu0*n*(I180-I0)/R
     print(Be.mean())
     print(Be.mean()/20e-6-1)
+    ax = setSpace(ax, X, Y, title="Abb. 1: Bestimmung der spezifischen Ladung", xlabel="U [V]", ylabel="$r^2B^2\cdot 10^5$[$m^2T^2$]")
     plt.show()
     
     outData = pd.DataFrame({"B": B_rounded})
@@ -82,9 +82,9 @@ def c():
     
     
     #abweichung
+    Valid = [True]*11
     for i in range(11):
         print(f"Tröpfchen {i+1}") 
-        valid = True
         for k in range(5):
             test1 = (predVel0[i,k]+dPredVel0[i, k])>velocity[i,k,0]*2-dVelocity[i, k,0]*2
             test2 = (predVel0[i, k]-dPredVel0[i,k])<(velocity[i,k,0]*2)+dVelocity[i, k,0]*2
@@ -92,8 +92,8 @@ def c():
             if test1 and test2:
                 pass
             else:
-                valid = False
-        print(f"Valid => {valid}")
+                Valid[i] = False
+        print(f"Valid => {Valid[i]}")
         #abweichung = np.round(((velocity[i,:,2]-velocity[i,:,1])/(velocity[i,:,0]*2)-1)*100, 2)
         #print(abweichung)
         
@@ -101,9 +101,45 @@ def c():
         X = np.tile(np.arange(5),2)
         Y = np.concatenate([predVel0[i], velocity[i,:,0]*2])
         Yerr = np.concatenate([dPredVel0[i], dVelocity[i,:,0]*2])
-        print(X.shape, Y.shape, Yerr.shape)
+        #print(X.shape, Y.shape, Yerr.shape)
         #plt.errorbar(X, Y, Yerr, fmt="x", capsize=4)
         #plt.show()
+    
+    ethaeff = 18.19e-6
+    g=9.81
+    rhoöl = 886
+    rholuft = 1.2041
+    E = 500/7.67e-3
+    COEFF = 9*ethaeff/(4*g*(rhoöl-rholuft))
+    r = (np.abs(COEFF*(velocity[:,:,2]-velocity[:,:,1])))**(1/2)
+    dr = ((r**(-1)*COEFF*dVelocity[:,:,2])**2+(r**(-1)*COEFF*dVelocity[:,:,1])**2)**(1/2)
+    print(r)
+    
+    COEFF2 = 3*3.14159*ethaeff*r/E
+    q_notsummed = (COEFF2*(velocity[:,:,2]+velocity[:,:,1]))
+    q = np.mean(q_notsummed, axis=1)
+    dq_notsumed = ((COEFF2*dVelocity[:,:,2])**2 + (COEFF2*dVelocity[:,:,1])**2 + (COEFF2/r*dr*(velocity[:,:,2]+velocity[:,:,1]))**2)**(1/2)
+    dq = np.sum((dq_notsumed/dq_notsumed.shape[0])**2, axis=1)**(1/2)
+    
+    X = np.arange(len(Valid))[Valid]+1
+    X = X*10
+    print(Valid, q)
+    Y = q[Valid]*1e20
+    Yerr = dq[Valid]*1e20
+    fig, ax = plt.subplots()
+    ax, model = plotData(ax, X, np.zeros_like(X), Y, Yerr, polyfit=0, fmt="x", label="Tröpfchen")
+    
+    X2 = np.zeros(7)
+    Y2 = np.zeros(7)+1.6e-19*np.arange(len(X2))*1e20
+    for i in range(Y2.size):
+        ax = plotLine(ax, np.array([0, 200]), np.tile(Y2[i], 2), color="g")
+    
+    print(X, Y)
+    ax = setSpace(ax, X, Y, xlabel=r"Tröpfchen Nummer $1/10$", ylabel=r"$Ne/10^{20}$", title=r"Abb. 2: Bestimmung der Elementarladung")
+    plt.show()
+    
+    
+    
 
 
 def g():
