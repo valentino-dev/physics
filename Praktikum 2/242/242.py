@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 plt.rcParams.update({"text.usetex": True,
                      "font.family": "serif"})
-exec = "b"
+exec = "bc"
 
 
 
@@ -26,8 +26,10 @@ def b():
     #fdsfdsfsfds Fehler
     B  = (4/5)**(3/2)*mu0*n*(I0-I180)/R
     
-    B_rounded, err = roundToError(B)
+    B_rounded, err = roundToError(B*1e7, digits=4)
     print(B_rounded)
+    outData1 = pd.DataFrame(np.array([B_rounded]).T, columns=[r"B$\cdot 10^7$"])
+    outData1.to_csv("242_Tabelle_1.csv")
     
     X = np.tile(U, 2)
     Xerr = np.zeros_like(X)
@@ -36,7 +38,7 @@ def b():
     print(X.shape, Xerr.shape, Y.shape, Yerr.shape)
     fig, ax = plt.subplots()
     print(X, Y)
-    ax, model = plotData(ax, X, Xerr, Y, Yerr, polyfit=1, fmt="x")
+    ax, model = plotData(ax, X, Xerr, Y, Yerr, polyfit=1, fmt="x", label="Daten")
     model.printParameter()
     spezifische_ladung = 2*R**2/(model.m*(4/5)**3*mu0**2*n**2)
     d_spezifische_ladung = 2*R**2/(model.m*(4/5)**3*mu0**2*n**2)**2*model.m*(4/5)**3*mu0**2*n**2*model.V_m**(1/2)
@@ -46,11 +48,14 @@ def b():
     Be = 1/2*(4/5)**(3/2)*mu0*n*(I180-I0)/R
     print(Be.mean())
     print(Be.mean()/20e-6-1)
-    ax = setSpace(ax, X, Y, title="Abb. 1: Bestimmung der spezifischen Ladung", xlabel="U [V]", ylabel="$r^2B^2\cdot 10^5$[$m^2T^2$]")
-    plt.show()
     
-    outData = pd.DataFrame({"B": B_rounded})
-    outData.to_csv("242_Tabelle.csv")
+    ax = setSpace(ax, X, Y, title="Abb. 1: Bestimmung der spezifischen Ladung", xlabel=r"U[V]", ylabel=r"$r^2B^2\cdot 10^5$[$m^2T^2$]")
+    plt.legend()
+    plt.savefig("Bestimmung der spezifischen Ladung", dpi=500)
+    X, Xerr = roundToError(X, xerr=Xerr)
+    Y, Yerr = roundToError(Y, xerr=Yerr)
+    outData = pd.DataFrame(np.array([X, Xerr, Y, Yerr]).T, columns=[r"U[V]", r"$\Delta$U[V]", r"$r^2B^2\cdot 10^5$[$m^2T^2$]", r"$\Delta r^2B^2\cdot 10^5$[$m^2T^2$]"])
+    outData.to_csv("242_Tabelle_2.csv")
 
 
 def c():
@@ -113,14 +118,15 @@ def c():
     COEFF = 9*ethaeff/(4*g*(rhoöl-rholuft))
     r = (np.abs(COEFF*(velocity[:,:,2]-velocity[:,:,1])))**(1/2)
     dr = ((r**(-1)*COEFF*dVelocity[:,:,2])**2+(r**(-1)*COEFF*dVelocity[:,:,1])**2)**(1/2)
-    print(r)
+    
+    print(f"r: {r.mean(axis=1)[Valid]}+-{dr.mean(axis=1)[Valid]}")
     
     COEFF2 = 3*3.14159*ethaeff*r/E
     q_notsummed = (COEFF2*(velocity[:,:,2]+velocity[:,:,1]))
     q = np.mean(q_notsummed, axis=1)
     dq_notsumed = ((COEFF2*dVelocity[:,:,2])**2 + (COEFF2*dVelocity[:,:,1])**2 + (COEFF2/r*dr*(velocity[:,:,2]+velocity[:,:,1]))**2)**(1/2)
     dq = np.sum((dq_notsumed/dq_notsumed.shape[0])**2, axis=1)**(1/2)
-    
+    print(f"q: {q[Valid]}+-{dq[Valid]}")
     X = np.arange(len(Valid))[Valid]+1
     X = X*10
     print(Valid, q)
@@ -135,8 +141,17 @@ def c():
         ax = plotLine(ax, np.array([0, 200]), np.tile(Y2[i], 2), color="g")
     
     print(X, Y)
-    ax = setSpace(ax, X, Y, xlabel=r"Tröpfchen Nummer $1/10$", ylabel=r"$Ne/10^{20}$", title=r"Abb. 2: Bestimmung der Elementarladung")
-    plt.show()
+    ax = setSpace(ax, X, Y, xlabel=r"Tröpfchen Nummer $\cdot 10$", ylabel=r"$Ne\cdot 10^{20}$", title=r"Abb. 2: Bestimmung der Elementarladung")
+    Y, Yerr = roundToError(Y, xerr=Yerr)
+    outData = pd.DataFrame(np.array([X, Y, Yerr]).T, columns=[r"Tröpfchen Nummer $\cdot 10$", r"$\Delta Ne\cdot 10^{20}$", r"$Ne\cdot 10^{20}$"])
+    outData.to_csv("242_Tabelle_3.csv")
+    r = r.mean(axis=1)*1e9
+    dr = np.linalg.norm(dr/r.shape[0], axis=1)*1e9
+    r, dr = roundToError(r, dr)
+    outData2 = pd.DataFrame(np.array([r, dr]).T, columns=[r"$r$[m]$\cdot 10^9$",r"$\delta r$[m]$\cdot 10^9$"])
+    outData2.to_csv("242_Tabelle_4.csv")
+    plt.legend()
+    plt.savefig("Bestimmung der Elementarladung", dpi=500)
     
     
     
