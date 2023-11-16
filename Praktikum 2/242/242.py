@@ -145,13 +145,53 @@ def c():
     Y, Yerr = roundToError(Y, xerr=Yerr)
     outData = pd.DataFrame(np.array([X, Y, Yerr]).T, columns=[r"Tröpfchen Nummer $\cdot 10$", r"$\Delta Ne\cdot 10^{20}$", r"$Ne\cdot 10^{20}$"])
     outData.to_csv("242_Tabelle_3.csv")
-    r = r.mean(axis=1)*1e9
-    dr = np.linalg.norm(dr/r.shape[0], axis=1)*1e9
-    r, dr = roundToError(r, dr)
-    outData2 = pd.DataFrame(np.array([r, dr]).T, columns=[r"$r$[m]$\cdot 10^9$",r"$\delta r$[m]$\cdot 10^9$"])
+    rr = r.mean(axis=1)*1e9
+    drr = np.linalg.norm(dr/r.shape[0], axis=1)*1e9
+    rr, drr = roundToError(rr, drr)
+    outData2 = pd.DataFrame(np.array([rr, drr]).T, columns=[r"$r$[m]$\cdot 10^9$",r"$\delta r$[m]$\cdot 10^9$"])
     outData2.to_csv("242_Tabelle_4.csv")
     plt.legend()
     plt.savefig("Bestimmung der Elementarladung", dpi=500)
+    
+    Teiler = []
+    for i in range(len(Y)):
+        Teiler.append(Y[i]/np.arange(10))
+        print(f"{i}: {Teiler[i]}")
+    res = {"T2": [4, 18.75], "T7": [3, 23.3], "T8": [3, 20.76], "T9": [2, 20.6], "T10": [3, 18.9]}
+    print(res)
+    #res = {"T2": [5, 15.00], "T7": [4, 17.5], "T8": [4, 15.575], "T9": [2, 20.6], "T10": [4, 14.175]}
+    rr = rr*1e-9
+    drr = drr*1e-9
+    X = 1/rr[Valid]*1e-4
+    Xerr = X**2*drr[Valid]
+    
+    de = dq[Valid]/np.array([4, 3, 3, 2, 3])
+    e = q[Valid]/np.array([4, 3, 3, 2, 3])
+    print(f"dq: {dq[Valid]}")
+    Yerr = 2/3*(e)**((2/3)-1)*de*1e15
+    #Yerr = (q[Valid]/np.array([5, 4, 4, 2, 4]))**(2/3)
+    #Yerr = (q[Valid]/np.array([4, 3, 3, 2, 3]))**(2/3)
+    Y = (np.array([18.75, 23.33, 20.76, 20.6, 18.9])*1e-20)**(2/3)*1e15
+    #Y = (np.array([15.00, 17.5, 15.575, 20.6, 14.175])*1e-20)**(2/3)
+    fig, ax = plt.subplots()
+    ax, model = plotData(ax, X, np.zeros_like(X), Y, Yerr, fmt="x")
+    model.printParameter()
+    print(model.n**(3/2))
+    print(X, Y)
+    ax = setSpace(ax, X, Y, title="Abb. 3: Bestimmung der korregierten Elementarladung", xlabel=r"$r\cdot 10^{-4}$", ylabel=r"$q \cdot 10^{14}$ [C]")
+    X, Xerr = roundToError(X, digits=4)
+    Y, Yerr = roundToError(Y, Yerr)
+    outDate = pd.DataFrame(np.array([X, Y, Yerr]).T, columns=[r"$r\cdot 10^{-4}$", r"$q \cdot 10^{14}$ [C]", r"$\delat q \cdot 10^{14}$ [C]"])
+    outDate.to_csv("242_Tabelle_5.csv")
+    plt.savefig("Bestimmung der korregierten Elementarladung", dpi=500)
+    #plt.show()
+    
+    
+    
+        
+        
+    
+        
     
     
     
