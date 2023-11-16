@@ -103,6 +103,7 @@ def setSpace(axis, allX, allY, title="plot", xlabel="x", ylabel="y", border=0.1,
     print(yRange)
 
     xstep = np.round((xRange * resolution)*2, -1)/2
+    print(yRange)
     ystep = np.round((yRange * resolution)*2, -1)/2
     print(ystep)
 
@@ -110,7 +111,7 @@ def setSpace(axis, allX, allY, title="plot", xlabel="x", ylabel="y", border=0.1,
                math.ceil((np.max(allX)+xRange*border+xstep)/10)*10]
     yLimits = [math.floor((np.min(allY)-yRange*border)/10)*10,
                math.ceil((np.max(allY)+yRange*border+ystep)/10)*10]
-
+    print(yLimits[0], yLimits[1], ystep)
     axis.set_xticks(np.arange(xLimits[0], xLimits[1], xstep))
     axis.set_xticks(np.arange(xLimits[0], xLimits[1], xstep * 0.2), minor=True)
     axis.set_yticks(np.arange(yLimits[0], yLimits[1], ystep))
