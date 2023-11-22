@@ -11,8 +11,8 @@ data = pd.read_csv("240_b_Messung_1.txt", sep="\t", decimal=",").to_numpy().T
 
 print(data.shape)
 
-I = -data[1]*1e3
-B = data[2]
+I = -data[1]
+B = data[2]*1e3
 
 N = 500
 l = 477*1e-3
