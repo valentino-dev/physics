@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 plt.rcParams.update({"text.usetex": True,
                      "font.family": "serif"})
-exec = "bc"
+exec = "c"
 
 
 
@@ -59,42 +59,54 @@ def b():
 
 
 def c():
-    data = np.array([pd.read_csv("Drop01.csv").to_numpy(),
-            pd.read_csv("Drop02.csv").to_numpy(),
-            pd.read_csv("Drop03.csv").to_numpy(),
-            pd.read_csv("Drop04.csv").to_numpy(),
-            pd.read_csv("Drop05.csv").to_numpy(),
-            pd.read_csv("Drop06.csv").to_numpy(),
-            pd.read_csv("Drop07.csv").to_numpy(),
-            pd.read_csv("Drop08.csv").to_numpy(),
-            pd.read_csv("Drop09.csv").to_numpy(),
-            pd.read_csv("Drop10.csv").to_numpy(),
-            pd.read_csv("Drop11.csv").to_numpy(),
-            ])
+    #data = np.array([pd.read_csv("Drop01.csv").to_numpy(),
+            #pd.read_csv("Drop02.csv", sep=",").to_numpy(),
+            #pd.read_csv("Drop03.csv").to_numpy(),
+            #pd.read_csv("Drop04.csv").to_numpy(),
+            #pd.read_csv("Drop05.csv").to_numpy(),
+            #pd.read_csv("Drop06.csv").to_numpy(),
+            #pd.read_csv("Drop07.csv").to_numpy(),
+            #pd.read_csv("Drop08.csv").to_numpy(),
+            #pd.read_csv("Drop09.csv").to_numpy(),
+            #pd.read_csv("Drop10.csv").to_numpy(),
+            #pd.read_csv("Drop11.csv").to_numpy(),
+            #])
+    
+    
+    data = np.loadtxt("Messung242_f_3_columns.txt")
+    data[:, [1, 0]] = data[:, [0, 1]]
+    data = data.reshape(12, 3, 3)
+    print(data)
+    dropcount = 12
+    messungperdrop = 3
     
     dt = 0.3
-    dd = 0.025e-3
+    dd = np.zeros_like(data)+0.025e-3
     #dd = 0
-    d = 5e-4
-    velocity = d/data
-    dVelocity = ((dd/data)**2+(d/data**2*dt)**2)**(1/2)
+    d = np.zeros_like(data)+5e-4
+
+    velocity = np.divide(d,data,out=np.zeros_like(d), where=data!=0)
+    dVelocity = ((np.divide(dd,data,out=np.zeros_like(dd), where=data!=0)**2+(np.divide(d,data,out=np.zeros_like(d), where=data!=0))**2*dt)**2)**(1/2)
     predVel0 = velocity[:,:,2]-velocity[:,:,1]
     dPredVel0 = (dVelocity[:,:,2]**2+dVelocity[:,:,1]**2)**(1/2)
+    print(velocity, dVelocity, predVel0, dPredVel0)
+    
     out_data = []
-    for i in range(11):
+    for i in range(dropcount):
         out_data.append(pd.DataFrame({"predVal0": predVel0[i,:], "dPredVel0": dPredVel0[i,:], "v0*2": velocity[i,:,0]*2, "d(v0*2)": dVelocity[i,:,0]*2}))
         out_data[i].to_csv(f"242_Drop{i}_Abschätzung.csv")
     
     
     #abweichung
-    Valid = [True]*11
-    for i in range(11):
+    Valid = [True]*dropcount
+    for i in range(dropcount):
         print(f"Tröpfchen {i+1}") 
-        for k in range(5):
+        for k in range(messungperdrop):
+            
             test1 = (predVel0[i,k]+dPredVel0[i, k])>velocity[i,k,0]*2-dVelocity[i, k,0]*2
             test2 = (predVel0[i, k]-dPredVel0[i,k])<(velocity[i,k,0]*2)+dVelocity[i, k,0]*2
             #print(test1, test2)
-            if test1 and test2:
+            if test1 and test2 and predVel0!=0 and dPredVel0!=0:
                 pass
             else:
                 Valid[i] = False
@@ -102,8 +114,8 @@ def c():
         #abweichung = np.round(((velocity[i,:,2]-velocity[i,:,1])/(velocity[i,:,0]*2)-1)*100, 2)
         #print(abweichung)
         
-    for i in range(11):
-        X = np.tile(np.arange(5),2)
+    for i in range(dropcount):
+        X = np.tile(np.arange(messungperdrop),2)
         Y = np.concatenate([predVel0[i], velocity[i,:,0]*2])
         Yerr = np.concatenate([dPredVel0[i], dVelocity[i,:,0]*2])
         #print(X.shape, Y.shape, Yerr.shape)
@@ -184,6 +196,13 @@ def c():
     outDate = pd.DataFrame(np.array([X, Y, Yerr]).T, columns=[r"$r\cdot 10^{-4}$", r"$q \cdot 10^{14}$ [C]", r"$\delat q \cdot 10^{14}$ [C]"])
     outDate.to_csv("242_Tabelle_5.csv")
     plt.savefig("Bestimmung der korregierten Elementarladung", dpi=500)
+    em = 1.751405 * 1e11
+    dem = 1.6*1e5
+    eee = 1.851*1e-19
+    deee = 0.066*1e-19
+    m = eee/em
+    dm = ((deee/em)**2+(eee/em**2*dem)**2)**(1/2)
+    print(m, dm)
     #plt.show()
     
     
