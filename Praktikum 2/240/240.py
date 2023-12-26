@@ -12,7 +12,13 @@ data = pd.read_csv("240_b_Messung_1.txt", sep="\t", decimal=",").to_numpy().T
 print(data.shape)
 
 I = -data[1]
-B = data[2]*1e3
+B = data[2]*1e-3
+
+n_mu_A_dot = 52
+n_mu_max_dot = 101
+
+x_scale = 1e-1
+y_scale = 1e2
 
 N = 500
 l = 477*1e-3
@@ -22,8 +28,8 @@ mu0 = sc.mu_0
 H = N*I/l-d/mu0/l*B
 H = -H
 
-X = H*1e-5
-Y = B*1e-1
+X = H*x_scale
+Y = B*y_scale
 
 
 #plt.scatter(X, Y, marker=".", linewidths=0.)
@@ -31,7 +37,7 @@ Y = B*1e-1
 
 fig, ax = plt.subplots()
 
-ax = olib.setSpace(ax, X, Y, title=r"Abb. 1: gesammte Hysteresekurve", xlabel=r"$H\cdot 10^{-5}$[$\frac{A}{m}$]", ylabel=r"$B\cdot 10^{-1}$[T]")
+ax = olib.setSpace(ax, X, Y, title=r"Abb. 1: gesammte Hysteresekurve", xlabel=r"$H\cdot 10^{-1}$[$\frac{A}{m}$]", ylabel=r"$B\cdot 10^{2}$[T]")
 ax.plot(X, Y, linewidth=1)
 
 
@@ -41,17 +47,23 @@ plt.savefig("Abb_1_Hysteresekurve.png", dpi=500)
 fig, ax = plt.subplots()
 
 mask = H>0
-X = H*1e-5
-Y = B*1e-1
-a1 = 29.894/17.1789
-a2 = 29.002/19.5815
-X2 = np.linspace(0, X.max())
+X = H*x_scale
+Y = B*y_scale
+mu_A_a = B[n_mu_A_dot]/H[n_mu_A_dot]
+mu_A = mu_A_a/sc.mu_0
+mu_max_a = B[n_mu_max_dot]/H[n_mu_max_dot]
+mu_max = mu_max_a/sc.mu_0
+print(f"mu_A: {mu_A}, mu_max: {mu_max}")
+X2 = np.linspace(0, H.max())*x_scale
 
-ax = olib.setSpace(ax, H[mask]*1e-5, B[mask]*1e-1, title=r"Abb. 2: kleiner Ausschnitt der Hysteresekurve", xlabel=r"$H\cdot 10^{-5}$[$\frac{A}{m}$]", ylabel=r"$B\cdot 10^{-1}$[T]")
-ax.scatter(X, Y, linewidths=0.5, marker=".")
-ax.plot(X2, X2*a1, color="g", label=r"$\mu_{max}$")
-ax.plot(X2, X2*a2, color="r", label=r"$\mu_A$")
+ax = olib.setSpace(ax, H[mask]*x_scale, B[mask]*y_scale, title=r"Abb. 2: kleiner Ausschnitt der Hysteresekurve", xlabel=r"$H\cdot 10^{-1}$[$\frac{A}{m}$]", ylabel=r"$B\cdot 10^{2}$[T]")
+#ax.scatter(X, Y, linewidths=0.5, marker=".")
+ax.plot(X, Y, linewidth=1)
+ax.plot(X2, X2*mu_max_a*y_scale*1e1, color="g", label=r"$\mu_{max}$", linewidth=0.7)
+ax.plot(X2, X2*mu_A_a*y_scale*1e1, color="r", label=r"$\mu_A$", linewidth=0.7)
 ax.legend()
+
+
 
 
 plt.savefig("Abb_2_Hysteresekurve.png", dpi=500)
@@ -59,20 +71,18 @@ plt.savefig("Abb_2_Hysteresekurve.png", dpi=500)
 
 
 fig, ax = plt.subplots()
-
+print(H)
 mask = H>0
-mask = mask*(H<1e6)
+mask = mask*(H<2.5e3)
 #print(np.array(-H).max())
-X = H*1e-4
-Y = B*1e-0
-print(X)
-ax = olib.setSpace(ax, H[mask]*1e-4, B[mask]*1e-0, title=r"Abb. 3: großer Ausschnitt der Hysteresekurve", xlabel=r"$H\cdot 10^{-4}$[$\frac{A}{m}$]", ylabel=r"$B$[T]")
-ax.scatter(X, Y, linewidths=0.5, marker=".")
-X2 = X2*1e1
-ax.plot(X2, X2*a1, color="g", label=r"$\mu_{max}$")
-ax.plot(X2, X2*a2, color="r", label=r"$\mu_A$")
+X = H*x_scale
+Y = B*y_scale
+ax = olib.setSpace(ax, H[mask]*x_scale, B[mask]*y_scale, title=r"Abb. 3: großer Ausschnitt der Hysteresekurve", xlabel=r"$H\cdot 10^{-1}$[$\frac{A}{m}$]", ylabel=r"$B\cdot 10^{2}$[T]")
+ax.scatter(X, Y, linewidths=0.5, marker="x")
+ax.plot(X2, X2*mu_max_a*y_scale*1e1, color="g", label=r"$\mu_{max}$", linewidth=0.7)
+ax.plot(X2, X2*mu_A_a*y_scale*1e1, color="r", label=r"$\mu_A$", linewidth=0.7)
 ax.legend()
-print(a1*1e-4/sc.mu_0, a2*1e-4/sc.mu_0)
+
 
 
 plt.savefig("Abb_3_Hysteresekurve.png", dpi=500)
