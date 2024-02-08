@@ -120,7 +120,21 @@ def c():
         Yerr = np.concatenate([dPredVel0[i], dVelocity[i,:,0]*2])
         #print(X.shape, Y.shape, Yerr.shape)
         #plt.errorbar(X, Y, Yerr, fmt="x", capsize=4)
-        #plt.show()
+        #plt.show()       #ax[0, i].legend()
+
+# counts, bins = np.histogram(data.flatten(), 20)
+# ax.stairs(counts, bins)
+#for i in range(data.shape[0]):
+#    if i == data.shape[0]-1:
+#        ax[0, 1].plot(data[i], np.arange(data.shape[1]), label=f"Markov Iter. {i}", linewidth=0.5)
+#        counts, bins = np.histogram(data[i], 20)
+#        ax[1, 1].stairs(counts, bins)
+        
+#ax[0, 0].set_xlim((-4, 4))
+#ax[0, 1].set_xlim((-4, 4))
+    
+#ax[0, 0].legend()
+#ax[0, 1].legend()
     
     ethaeff = 18.19e-6
     g=9.81
