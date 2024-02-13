@@ -24,7 +24,7 @@ def b():
     r = d1/2
     dr = dd1/2
     #fdsfdsfsfds Fehler
-    B  = (4/5)**(3/2)*mu0*n*(I0-I180)/R
+      = (4/5)**(3/2)*mu0*n*(I0-I180)/R
     
     B_rounded, err = roundToError(B*1e7, digits=4)
     print(B_rounded)
