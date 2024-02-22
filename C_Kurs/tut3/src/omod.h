@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef omod
-#define omod
+#ifndef OMOD_H
+#define OMOD_H
 
 extern const double EPSILON;
 
