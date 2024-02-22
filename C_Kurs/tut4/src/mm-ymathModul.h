@@ -3,6 +3,7 @@
 #ifndef MM_YMATHMODUL_H
 #define MM_YMATHMODUL_H
 
+
 extern const double EPSILON;
 
 int sgn();
@@ -20,5 +21,6 @@ double wurzel();
 double square_to();
 double root_to();
 int solveQuadraticEq();
+
 
 #endif
