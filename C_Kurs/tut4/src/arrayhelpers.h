@@ -5,15 +5,13 @@
 
 
 void printArray();
-
 int *initArr();
-
 int *roll();
-
 int *reverse();
-
 int matchArr();
+void copyAToB();
+int *bubbleSort();
+int *bucketSort();
 
-void copyArr();
 
 #endif ARRAYHELPERS_H

@@ -4,6 +4,7 @@
 
 const double EPSILON = 1e-4;
 
+
 int sgn(double x){return (x>=0)?1:-1;}
 
 double betrag(double x){return (x>0)?x:-x;}
@@ -30,7 +31,6 @@ double pow_loop(double x, int n){
         }
     return res;
 }
-
 
 long long fac(long n){
 	long long res = 1;
@@ -59,7 +59,6 @@ double logarithm(double x){
 }
 
 double power(double x, double y){return expo(y*logarithm(x));}
-
 
 double zeta_function(double s){
     double temp = 1;
