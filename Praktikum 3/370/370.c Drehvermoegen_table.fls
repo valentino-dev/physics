@@ -1,0 +1,98 @@
+PWD c:/Users/angel/Documents/git/physics/Praktikum 3/370
+INPUT c:/texlive/2022/texmf.cnf
+INPUT c:/texlive/2022/texmf-dist/web2c/texmf.cnf
+INPUT c:/texlive/2022/texmf-var/web2c/pdftex/pdflatex.fmt
+INPUT c:/Users/angel/Documents/git/physics/Praktikum 3/370/370.c Drehvermoegen_table.tex
+OUTPUT 370.c Drehvermoegen_table.log
+INPUT c:/texlive/2022/texmf-dist/tex/latex/base/article.cls
+INPUT c:/texlive/2022/texmf-dist/tex/latex/base/article.cls
+INPUT c:/texlive/2022/texmf-dist/tex/latex/base/article.cls
+INPUT c:/texlive/2022/texmf-dist/tex/latex/base/article.cls
+INPUT c:/texlive/2022/texmf-dist/tex/latex/base/article.cls
+INPUT c:/texlive/2022/texmf-dist/tex/latex/base/article.cls
+INPUT c:/texlive/2022/texmf-dist/tex/latex/base/article.cls
+INPUT c:/texlive/2022/texmf-dist/tex/latex/base/article.cls
+INPUT c:/texlive/2022/texmf-dist/tex/latex/base/article.cls
+INPUT c:/texlive/2022/texmf-dist/tex/latex/base/article.cls
+INPUT c:/texlive/2022/texmf-dist/tex/latex/base/article.cls
+INPUT c:/texlive/2022/texmf-dist/tex/latex/base/size10.clo
+INPUT c:/texlive/2022/texmf-dist/tex/latex/base/size10.clo
+INPUT c:/texlive/2022/texmf-dist/tex/latex/base/size10.clo
+INPUT c:/texlive/2022/texmf-dist/tex/latex/base/size10.clo
+INPUT c:/texlive/2022/texmf-dist/tex/latex/multirow/multirow.sty
+INPUT c:/texlive/2022/texmf-dist/tex/latex/multirow/multirow.sty
+INPUT c:/texlive/2022/texmf-dist/tex/latex/multirow/multirow.sty
+INPUT c:/texlive/2022/texmf-dist/tex/latex/multirow/multirow.sty
+INPUT c:/texlive/2022/texmf-dist/tex/latex/multirow/multirow.sty
+INPUT c:/texlive/2022/texmf-dist/tex/latex/multirow/multirow.sty
+INPUT c:/texlive/2022/texmf-dist/tex/latex/multirow/multirow.sty
+INPUT c:/texlive/2022/texmf-dist/tex/latex/multirow/multirow.sty
+INPUT c:/texlive/2022/texmf-dist/tex/latex/multirow/multirow.sty
+INPUT c:/texlive/2022/texmf-dist/tex/latex/multirow/multirow.sty
+INPUT c:/texlive/2022/texmf-dist/tex/latex/multirow/multirow.sty
+INPUT c:/texlive/2022/texmf-dist/tex/latex/geometry/geometry.sty
+INPUT c:/texlive/2022/texmf-dist/tex/latex/geometry/geometry.sty
+INPUT c:/texlive/2022/texmf-dist/tex/latex/geometry/geometry.sty
+INPUT c:/texlive/2022/texmf-dist/tex/latex/geometry/geometry.sty
+INPUT c:/texlive/2022/texmf-dist/tex/latex/geometry/geometry.sty
+INPUT c:/texlive/2022/texmf-dist/tex/latex/geometry/geometry.sty
+INPUT c:/texlive/2022/texmf-dist/tex/latex/geometry/geometry.sty
+INPUT c:/texlive/2022/texmf-dist/tex/latex/geometry/geometry.sty
+INPUT c:/texlive/2022/texmf-dist/tex/latex/geometry/geometry.sty
+INPUT c:/texlive/2022/texmf-dist/tex/latex/geometry/geometry.sty
+INPUT c:/texlive/2022/texmf-dist/tex/latex/geometry/geometry.sty
+INPUT c:/texlive/2022/texmf-dist/tex/latex/graphics/keyval.sty
+INPUT c:/texlive/2022/texmf-dist/tex/latex/graphics/keyval.sty
+INPUT c:/texlive/2022/texmf-dist/tex/latex/graphics/keyval.sty
+INPUT c:/texlive/2022/texmf-dist/tex/latex/graphics/keyval.sty
+INPUT c:/texlive/2022/texmf-dist/tex/latex/graphics/keyval.sty
+INPUT c:/texlive/2022/texmf-dist/tex/latex/graphics/keyval.sty
+INPUT c:/texlive/2022/texmf-dist/tex/latex/graphics/keyval.sty
+INPUT c:/texlive/2022/texmf-dist/tex/latex/graphics/keyval.sty
+INPUT c:/texlive/2022/texmf-dist/tex/latex/graphics/keyval.sty
+INPUT c:/texlive/2022/texmf-dist/tex/latex/graphics/keyval.sty
+INPUT c:/texlive/2022/texmf-dist/tex/latex/graphics/keyval.sty
+INPUT c:/texlive/2022/texmf-dist/tex/generic/iftex/ifvtex.sty
+INPUT c:/texlive/2022/texmf-dist/tex/generic/iftex/ifvtex.sty
+INPUT c:/texlive/2022/texmf-dist/tex/generic/iftex/ifvtex.sty
+INPUT c:/texlive/2022/texmf-dist/tex/generic/iftex/ifvtex.sty
+INPUT c:/texlive/2022/texmf-dist/tex/generic/iftex/ifvtex.sty
+INPUT c:/texlive/2022/texmf-dist/tex/generic/iftex/ifvtex.sty
+INPUT c:/texlive/2022/texmf-dist/tex/generic/iftex/ifvtex.sty
+INPUT c:/texlive/2022/texmf-dist/tex/generic/iftex/ifvtex.sty
+INPUT c:/texlive/2022/texmf-dist/tex/generic/iftex/ifvtex.sty
+INPUT c:/texlive/2022/texmf-dist/tex/generic/iftex/ifvtex.sty
+INPUT c:/texlive/2022/texmf-dist/tex/generic/iftex/ifvtex.sty
+INPUT c:/texlive/2022/texmf-dist/tex/generic/iftex/iftex.sty
+INPUT c:/texlive/2022/texmf-dist/tex/generic/iftex/iftex.sty
+INPUT c:/texlive/2022/texmf-dist/tex/generic/iftex/iftex.sty
+INPUT c:/texlive/2022/texmf-dist/tex/generic/iftex/iftex.sty
+INPUT c:/texlive/2022/texmf-dist/tex/generic/iftex/iftex.sty
+INPUT c:/texlive/2022/texmf-dist/tex/generic/iftex/iftex.sty
+INPUT c:/texlive/2022/texmf-dist/tex/generic/iftex/iftex.sty
+INPUT c:/texlive/2022/texmf-dist/tex/generic/iftex/iftex.sty
+INPUT c:/texlive/2022/texmf-dist/tex/generic/iftex/iftex.sty
+INPUT c:/texlive/2022/texmf-dist/tex/generic/iftex/iftex.sty
+INPUT c:/texlive/2022/texmf-dist/tex/generic/iftex/iftex.sty
+INPUT c:/texlive/2022/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+INPUT c:/texlive/2022/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+INPUT c:/texlive/2022/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+INPUT c:/texlive/2022/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+INPUT c:/texlive/2022/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+INPUT c:/texlive/2022/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+INPUT c:/texlive/2022/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+INPUT c:/texlive/2022/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+INPUT c:/texlive/2022/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+INPUT c:/texlive/2022/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+INPUT c:/texlive/2022/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+INPUT ./370.c Drehvermoegen_table.aux
+INPUT 370.c Drehvermoegen_table.aux
+INPUT 370.c Drehvermoegen_table.aux
+OUTPUT 370.c Drehvermoegen_table.aux
+OUTPUT 370.c Drehvermoegen_table.pdf
+INPUT c:/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map
+INPUT 370.c Drehvermoegen_table.aux
+INPUT c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
+INPUT c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
+INPUT c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb
+INPUT c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
