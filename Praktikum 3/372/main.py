@@ -4,7 +4,7 @@ import olib
 import scipy.odr as odr
 
 plt.rcParams.update({"text.usetex": True, "font.family": "serif"})
-exec = "b"
+exec = "c"
 
 def a():
     
@@ -124,7 +124,41 @@ def b():
     plt.savefig("372.b_w_theo.pdf", dpi=500)
     
 def c():
-    pass
+    V = 100
+    S = 29*1e-6# µV m² 1/W
+    
+    U0 = 2.769*1e-3
+    dU0 = 0.033*1e-3
+    T0 = 25
+    
+    r = -(np.arange(710,210,-50)-880)*1e-3
+    print(r)
+    Dr = np.zeros_like(r)+1*1e-3
+
+    U = np.array([1790, 840.0,495.0,319.7,215.6,152.7,111.9,85.3,66.4,53.0])*1e-3
+    DU = np.array([5, 1,1,.1,.1,.1,.1,.1,.1,.1])*1e-3
+    
+    table_entf = olib.Table(1/r**2, 1/2/r**3*Dr, (U-U0)/V/S, ((DU**2)+(dU0**2))**(1/2), "372.c: Entfernungsabhängigkeit", r"$\frac{1}{r^2}$[$\frac{1}{\textrm{m}^2}$]", r"$\frac{\Phi}{A}$[$\frac{\textrm{W}}{\textrm{m}^2}$]")
+    fig, ax = plt.subplots()
+    ax, model = olib.plotData(ax, table_entf)
+    ax = olib.setSpace(ax, table_entf, path="")
+    table_entf.saveAsPDF()
+    model.printParameter()
+
+    UH = np.array([12,10.6,8.8,7.1,5.7,4.4,3.2,2.2,1.2])
+    I = np.array([4.34,4.02,3.63,3.20,2.81,2.41,2.00,1.61,1.21,.8])
+
+    U = (np.array([1080.0,1517.0,1160.0,833.0,585.0,401.0,240.0,130.0,60.0,29.0])-U0)*1e-3
+    dU = np.array([10,10,1,1,1,1,1,1,1,1])*1e-3
+    
+    alpha=4.8e-3
+    beta=6.76e-7
+    R = UH/I
+    T = -((alpha/beta)-T0)/2+(((alpha/beta)-T0**2)/4-T0**2+(alpha/beta)*T0+R/R0/beta)
+    
+    
+    
+    
     
     
     
