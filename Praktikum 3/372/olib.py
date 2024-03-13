@@ -159,7 +159,7 @@ def CSV_to_PDF(pandas_table, output_file_name):
     pdfkit.from_string(html_table, output_file_name, options=options)
 
 
-def setSpace(axis, table, border=0.1, resolution=0.1):
+def setSpace(axis, table, border=0.1, resolution=0.1, path=None):
     axis.set_xlabel(table.x_label_scaled)
     axis.set_ylabel(table.y_label_scaled)
     axis.set_title(table.title)
@@ -188,6 +188,11 @@ def setSpace(axis, table, border=0.1, resolution=0.1):
     axis.grid(which="both")
     axis.grid(which="minor", alpha=0.4)
     axis.grid(which="major", alpha=0.7)
+    
+    if path!=None:
+        if path=="":
+            path = os.path.dirname(os.path.realpath(__file__))+"\\"+f"{sanitize_filename(table.title)}_plot.pdf"
+        plt.savefig(path, dpi=500)
 
     return axis
 
@@ -202,11 +207,13 @@ def plotLine(axis, x, y, label=None, linewidth=0.7, linestyle="solid", color="r"
 def plotData(axis, table, label=None, capsize=1, elinewidth=0.5, fmt=",", polyfit=1, color=None, xscaleing=1, yscaleing=1, errorbar=True, print_data=True, data_path="data.txt"):
     if print_data:
         pass
+    plot = None
     if errorbar:
         axis.errorbar(table.X*table.x_scaling, table.Y*table.y_scaling, table.Yerr*table.y_scaling, table.Xerr*table.x_scaling, label=label, capsize=capsize,
                       elinewidth=elinewidth, fmt=fmt, ecolor=color)
     else:
         axis.scatter(table.X*table.x_scaling, table.Y*table.y_scaling, label=label, marker="x", color=color, linewidth=0.6)
+    plot_color = axis.get_lines()[0].get_color()
 
     model = None
 
@@ -218,14 +225,14 @@ def plotData(axis, table, label=None, capsize=1, elinewidth=0.5, fmt=",", polyfi
             model = LinearRegression().fit(table.X, table.Y, table.Yerr)
             y_most_and_least = model.predict_most_and_least(x)
             plotLine(axis, x*table.x_scaling, y_most_and_least[0]*table.y_scaling,
-                     linestyle="dashdot", color=color, linewidth=1)
+                     linestyle="dashdot", color=plot_color, linewidth=1)
             plotLine(axis, x*table.x_scaling, y_most_and_least[1]*table.y_scaling,
-                     linestyle="dashdot", color=color, linewidth=1)
+                     linestyle="dashdot", color=plot_color, linewidth=1)
             y = model.predict(x)
         elif polyfit > 1:
             y = np.poly1d(np.polyfit(table.X*table.x_scaling, table.Y*table.y_scaling, polyfit))(x)
 
-        plotLine(axis, x*table.x_scaling, y*table.y_scaling, label=None, color=color, linewidth=1)
+        plotLine(axis, x*table.x_scaling, y*table.y_scaling, label=None, color=plot_color, linewidth=1)
         return axis, model
 
     return axis
