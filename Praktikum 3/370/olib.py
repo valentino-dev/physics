@@ -7,14 +7,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 def roundToError(x, xerr=[""], digits=2):
-    #if xerr == [""]:
-        #xerr = x
-    #print(xerr.shape)
     error_digits = np.zeros_like(xerr).astype("int")
-    #print("esr", xerr, xerr!=0)
-    #print(error_digits[xerr!=0])
     error_digits[xerr!=0] = np.floor(np.log10(xerr[xerr!=0])).astype("int")
-    #error_digits[error_digits**2==0] = 0
     roundedx = []
     roundedxerr = []
     print()

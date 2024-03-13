@@ -4,6 +4,7 @@ import olib
 import scipy.odr as odr
 
 plt.rcParams.update({"text.usetex": True, "font.family": "serif"})
+# Hier "a", "b" oder "c" angeben, um die jeweilige Funktion auszuführen
 exec = "a"
 
 def func(beta, x):
@@ -42,8 +43,8 @@ def a():
     I_max = y.max()
     I_min = y.min()
     PG = (I_max-I_min)/(I_max+I_min)
-    # print("PG: ", PG)
-    # output.pprint()
+    print("PG: ", PG)
+    output.pprint()
     table.saveAsPDF()
     
 
