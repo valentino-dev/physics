@@ -4,7 +4,7 @@ import olib
 import scipy.odr as odr
 
 plt.rcParams.update({"text.usetex": True, "font.family": "serif"})
-exec = "c"
+exec = "b"
 
 def a():
     
@@ -83,24 +83,24 @@ def b():
     xlable = r"$T^4$[$\textrm{K}^4$]"
     ylable = r"$\frac{\Phi}{A}$[$\frac{\textrm{W}}{\textrm{m}^2}$]"
     
-    table_theo = olib.Table(X, Xerr, Y, np.zeros_like(Y), title, xlable, ylable)
+    #table_theo = olib.Table(X, Xerr, Y, np.zeros_like(Y), title, xlable, ylable)
     
     table_weiß = olib.Table(X, Xerr, I_weiß, dI_weiß, "Weiße Lackierung", xlable, ylable)
-    table_weiß.x_scaling, table_weiß.y_scaling = table_theo.getScaling()
+    #table_weiß.x_scaling, table_weiß.y_scaling = table_theo.getScaling()
     table_schwarz = olib.Table(X, Xerr, I_schwarz, dI_schwarz, "Schwarze Lackierung", xlable, ylable)
-    table_schwarz.x_scaling, table_schwarz.y_scaling = table_theo.getScaling()
+    table_schwarz.x_scaling, table_schwarz.y_scaling = table_weiß.getScaling()
     table_matt = olib.Table(X, Xerr, I_matt, dI_matt, "Mattes Metall", xlable, ylable)
-    table_matt.x_scaling, table_matt.y_scaling = table_theo.getScaling()
+    table_matt.x_scaling, table_matt.y_scaling = table_weiß.getScaling()
     table_glänzend = olib.Table(X, Xerr, I_glänzend, dI_glänzend, "Poliertes Metall", xlable, ylable)
-    table_glänzend.x_scaling, table_glänzend.y_scaling = table_theo.getScaling()
+    table_glänzend.x_scaling, table_glänzend.y_scaling = table_weiß.getScaling()
     
     fig, ax = plt.subplots()
     print(X, Y)
     print(table_weiß.Y)
-    ax, model_schwarz = olib.plotData(ax, table_schwarz, "schwarze Lackierung", polyfit=1, color="#1b9e77")
-    ax, model_weiß = olib.plotData(ax, table_weiß, "weiße Lackierung", polyfit=1, color="#d95f02")
-    ax, model_matt = olib.plotData(ax, table_matt, "mattes Metall", polyfit=1, color="#7570b3")
-    ax, model_glänzend = olib.plotData(ax, table_glänzend, "poliertes Metall", polyfit=1, color="#e7298a")
+    ax, model_schwarz = olib.plotData(ax, table_schwarz, "schwarze Lackierung", polyfit=1, color="#1b9e77", fmt="v")
+    ax, model_weiß = olib.plotData(ax, table_weiß, "weiße Lackierung", polyfit=1, color="#d95f02", fmt= "v")
+    ax, model_matt = olib.plotData(ax, table_matt, "mattes Metall", polyfit=1, color="#7570b3", fmt="v")
+    ax, model_glänzend = olib.plotData(ax, table_glänzend, "poliertes Metall", polyfit=1, color="#e7298a", fmt="v")
     model_schwarz.printParameter()
     print(olib.roundToError(np.array([model_schwarz.m/5.67e-8]), np.array([model_schwarz.V_m**(1/2)/5.67e-8])))
     model_weiß.printParameter()
@@ -114,14 +114,14 @@ def b():
     # table_matt.saveAsPDF(height=-1)
     #table_glänzend.saveAsPDF(height=-1)
     
-    ax = olib.plotLine(ax, table_theo.X*table_theo.x_scaling, table_theo.Y*table_theo.y_scaling, label="schwarzer Körper")
+    #ax = olib.plotLine(ax, table_theo.X*table_theo.x_scaling, table_theo.Y*table_theo.y_scaling, label="schwarzer Körper")
     
     
-    table_joint = olib.Table(X, Xerr, np.append(np.append(np.append(I_schwarz, I_matt), table_theo.Y), I_glänzend), np.append(np.append(np.append(dI_schwarz, dI_matt), dI_weiß), dI_glänzend), title, xlable, ylable)
+    table_joint = olib.Table(X, Xerr, np.append(np.append(np.append(I_schwarz, I_matt), table_weiß.Y), I_glänzend), np.append(np.append(np.append(dI_schwarz, dI_matt), dI_weiß), dI_glänzend), title, xlable, ylable)
     print(table_joint.y_scaling)
     ax = olib.setSpace(ax, table_joint)
     ax.legend()
-    plt.savefig("372.b_w_theo.pdf", dpi=500)
+    plt.savefig("372.b_wo_theo.pdf", dpi=500)
     
 def c():
     V = 100
@@ -145,16 +145,33 @@ def c():
     table_entf.saveAsPDF()
     model.printParameter()
 
-    UH = np.array([12,10.6,8.8,7.1,5.7,4.4,3.2,2.2,1.2])
+    UH = np.array([12,10.6,8.8,7.1,5.7,4.4,3.2,2.2,1.2,0.5])
     I = np.array([4.34,4.02,3.63,3.20,2.81,2.41,2.00,1.61,1.21,.8])
 
-    U = (np.array([1080.0,1517.0,1160.0,833.0,585.0,401.0,240.0,130.0,60.0,29.0])-U0)*1e-3
+    U = (np.array([1808.0,1517.0,1160.0,833.0,585.0,401.0,240.0,130.0,60.0,29.0])-U0)*1e-3
     dU = np.array([10,10,1,1,1,1,1,1,1,1])*1e-3
     
     alpha=4.8e-3
     beta=6.76e-7
     R = UH/I
-    T = -((alpha/beta)-T0)/2+(((alpha/beta)-T0**2)/4-T0**2+(alpha/beta)*T0+R/R0/beta)
+    R0 = 0.4
+
+    #T = -((alpha/beta)-2*T0)/2+(((alpha/beta)-2*T0**2)/4-T0**2+(alpha/beta)*T0-1/beta+R/R0/beta)
+    T = -alpha/2/beta+((alpha**2*R0-4*beta*R0+4*R*beta)/4/R0/beta**2)**(1/2)+T0
+    Terr = np.zeros_like(T)
+    
+    ddU = ((dU**2)+(dU0**2))/(1/2)/V/S
+    UU = np.log10(U/V/S)
+    table_int = olib.Table(np.log10(T)[:], Terr[:], UU[:], np.array(((1/UU/np.log(10)*ddU)**2)**(1/2))[:], "372.c: Leisungsabhängigkeit", r"$\log{T}$", r"$\log{\frac{\Phi}{A}}$[$\frac{\textrm{W}}{\textrm{m}^2}$]")
+    fig, ax = plt.subplots()
+    ax, model = olib.plotData(ax, table_int, fmt="v")
+    ax = olib.setSpace(ax, table_int, path="")
+    table_int.saveAsPDF()
+    model.printParameter()
+    print(10**(model.n)/5.67e-8)
+    print(10**(model.n-1)*model.n/5.67e-8*model.V_n**(1/2))
+    
+
     
     
     

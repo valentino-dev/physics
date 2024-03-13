@@ -54,7 +54,7 @@ class Table:
     
     def saveAsPDF(self, path=None, height=0):
         if path==None:
-            path = os.path.dirname(os.path.realpath(__file__))+"\\"+f"{sanitize_filename(self.title)}_table.tex"
+            path = os.path.dirname(os.path.realpath(__file__))+os.path.sep+f"{sanitize_filename(self.title)}_table.tex"
         
         if height==0:
             height = int(np.ceil(self.X.shape[0]/2))
@@ -191,7 +191,7 @@ def setSpace(axis, table, border=0.1, resolution=0.1, path=None):
     
     if path!=None:
         if path=="":
-            path = os.path.dirname(os.path.realpath(__file__))+"\\"+f"{sanitize_filename(table.title)}_plot.pdf"
+            path = os.path.dirname(os.path.realpath(__file__))+os.path.sep+f"{sanitize_filename(table.title)}_plot.pdf"
         plt.savefig(path, dpi=500)
 
     return axis
@@ -210,10 +210,11 @@ def plotData(axis, table, label=None, capsize=1, elinewidth=0.5, fmt=",", polyfi
     plot = None
     if errorbar:
         axis.errorbar(table.X*table.x_scaling, table.Y*table.y_scaling, table.Yerr*table.y_scaling, table.Xerr*table.x_scaling, label=label, capsize=capsize,
-                      elinewidth=elinewidth, fmt=fmt, ecolor=color)
+                      elinewidth=elinewidth, fmt=fmt, color=color)
     else:
         axis.scatter(table.X*table.x_scaling, table.Y*table.y_scaling, label=label, marker="x", color=color, linewidth=0.6)
-    plot_color = axis.get_lines()[0].get_color()
+    plot_color = axis.get_lines()[-1].get_color()
+    print(plot_color)
 
     model = None
 
