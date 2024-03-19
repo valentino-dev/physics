@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.23)  13 MAR 2024 21:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.23)  15 MAR 2024 17:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/angel/Documents/git/physics/Praktikum 3/372/372.c Entfernungsabhängigkeit_table.tex"
-(c:/Users/angel/Documents/git/physics/Praktikum 3/372/372.c Entfernungsabhängigkeit_table.tex
+**"c:/Users/angel/Documents/git/physics/Praktikum 3/368/Wellenlänge_table.tex"
+(c:/Users/angel/Documents/git/physics/Praktikum 3/368/Wellenlänge_table.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-01-16> (c:/texlive/2022/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
@@ -54,8 +54,9 @@ Package: iftex 2022/02/03 v1.0f TeX engine tests
 File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count197
 \l__pdf_internal_box=\box51
-) (./372.c Entfernungsabhängigkeit_table.aux)
-\openout1 = `"372.c Entfernungsabhängigkeit_table.aux"'.
+)
+No file Wellenlänge_table.aux.
+\openout1 = `Wellenlänge_table.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
 LaTeX Font Info:    ... okay on input line 5.
@@ -71,7 +72,6 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 5.
 LaTeX Font Info:    ... okay on input line 5.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
 LaTeX Font Info:    ... okay on input line 5.
-
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -110,22 +110,42 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 6.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 6.
+
+c:/Users/angel/Documents/git/physics/Praktikum 3/368/Wellenlänge_table.tex:8: LaTeX Error: Invalid UTF-8 byte sequence (�ng).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.8 \multicolumn{2}{|c|}{Wellenl�nge}
+                                     \\
+The document does not appear to be in UTF-8 encoding.
+Try adding \UseRawInputEncoding as the first line of the file
+or specify an encoding such as \usepackage [latin1]{inputenc}
+in the document preamble.
+Alternatively, save the file in UTF-8 using your editor or another tool
+
+
+Overfull \hbox (7.601pt too wide) in paragraph at lines 10--10
+[]$\OML/cmm/m/it/10 phi[]$\OT1/cmr/m/n/10 [Bogenmass]$\OMS/cmsy/m/n/10 ^^A\OT1/cmr/m/n/10 10[]$| 
+ []
+
 [1
 
-{c:/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./372.c Entfernungsabhängigkeit_table.aux) ) 
+{c:/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./Wellenlänge_table.aux) ) 
 Here is how much of TeX's memory you used:
- 1110 strings out of 476091
- 19648 string characters out of 5795540
- 1858324 words of memory out of 5000000
- 21555 multiletter control sequences out of 15000+600000
+ 1104 strings out of 476091
+ 19315 string characters out of 5795540
+ 1855324 words of memory out of 5000000
+ 21551 multiletter control sequences out of 15000+600000
  512287 words of font info for 32 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,12n,62p,371b,163s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on "372.c Entfernungsabhängigkeit_table.pdf" (1 page, 58925 bytes).
+ 57i,10n,62p,252b,126s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on Wellenlänge_table.pdf (1 page, 49629 bytes).
 PDF statistics:
- 38 PDF objects out of 1000 (max. 8388607)
- 22 compressed objects within 1 object stream
+ 33 PDF objects out of 1000 (max. 8388607)
+ 19 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
