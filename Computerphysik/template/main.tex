@@ -1,0 +1,57 @@
+\documentclass[10pt]{article}
+\usepackage[a4paper, left=2cm, right=2cm, top=2cm]{geometry}
+%\usepackage[german]{babel}
+\usepackage[]{graphicx}
+\usepackage[]{multicol}
+\usepackage[]{titlesec}
+\usepackage[]{wrapfig}
+\usepackage[]{blindtext}
+\usepackage[]{lipsum}
+\usepackage[]{caption}
+\usepackage[]{listings}
+\graphicspath{{images/}}
+
+% own fig. env. for multicols
+\newenvironment{Figure}
+  {\par\medskip\noindent\minipage{\linewidth}}
+  {\endminipage\par\medskip}
+
+\begin{titlepage}
+    \title{Computerphysik -- Abgabe 1}
+    \author{Michael J. P. Vogt, Angelo V. Brade\thanks{Wir sind die besten}}
+    \date{\today}
+\end{titlepage}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\begin{multicols}{2}
+[
+    \section{Abstract}
+    Hier ein Abstract.
+]
+\subsection{The standard Lorem Ipsum passage, used since the 1500s}
+\lipsum[1]
+
+\lipsum[6]
+
+\subsection{Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC}
+\lipsum[2]
+\begin{Figure}
+    \centering
+    \includegraphics[width=1.0\linewidth]{CorrelationErrorPerBinSize}
+    \captionof{figure}{Correlation Function}
+\end{Figure}
+\lipsum[3]
+
+\subsection{1914 translation by H. Rackham}
+\lipsum[4]
+
+\subsection{Section 1.10.33 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC}
+\lipsum[5]
+
+
+\end{multicols}
+
+\end{document}
