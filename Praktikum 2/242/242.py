@@ -8,6 +8,7 @@ exec = "c"
 
 
 
+
 def b():
     data = pd.read_csv("Fadenstrahlrohr.csv", sep=",")
     
@@ -20,6 +21,8 @@ def b():
     mu0 = 4*3.14159*1e-7
     n = 130
     R = 0.150
+
+
     
     r = d1/2
     dr = dd1/2
