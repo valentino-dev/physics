@@ -3,7 +3,9 @@ import numpy as np
 import pandas as pd
 import dask.dataframe as dd
 import scipy.odr
-from olib import *
+import sys
+sys.path.append("/home/angelo/Git/olib")
+import olib
 
 plt.rcParams.update({"text.usetex": True, "font.family": "serif"})
 
@@ -69,12 +71,14 @@ def autoCorrelationErrorPerBinSize():
     Xerr = np.zeros_like(X)
     Y = std_of_bins
     Yerr = np.zeros_like(Y)
-    table = Table(X, Xerr, Y, Yerr, "Correlation Error per bin size", "bin size", r"$\sigma_x$")
+    # table = Table(X, Xerr, Y, Yerr, "Correlation Error per bin size", "bin size", r"$\sigma_x$")
 
     fig, ax = plt.subplots()
-    ax = plotData(ax, table, polyfit=0, fmt="x")
-    ax = setSpace(ax, table)
-    plt.savefig("plots/CorrelationErrorPerBinSize.pdf", dpi=500)
+    # ax = plotData(ax, table, polyfit=0, fmt="x")
+    # ax = setSpace(ax, table)
+    plt.plot(X, Y)
+    plt.show()
+    # plt.savefig("plots/CorrelationErrorPerBinSize.pdf", dpi=500)
 
 
 autoCorrelationErrorPerBinSize()

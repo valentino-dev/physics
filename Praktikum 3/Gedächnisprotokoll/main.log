@@ -1,0 +1,369 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.10)  13 APR 2024 14:31
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**main.tex
+(./main.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-03-14>
+(/usr/local/texlive/2024/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
+(/usr/local/texlive/2024/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count188
+\c@section=\count189
+\c@subsection=\count190
+\c@subsubsection=\count191
+\c@paragraph=\count192
+\c@subparagraph=\count193
+\c@figure=\count194
+\c@table=\count195
+\abovecaptionskip=\skip48
+\belowcaptionskip=\skip49
+\bibindent=\dimen140
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+) (/usr/local/texlive/2024/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+ (/usr/local/texlive/2024/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2022/02/03 v1.0f TeX engine tests
+))
+\Gm@cnth=\count196
+\Gm@cntv=\count197
+\c@Gm@tempcnt=\count198
+\Gm@bindingoffset=\dimen141
+\Gm@wd@mp=\dimen142
+\Gm@odd@mp=\dimen143
+\Gm@even@mp=\dimen144
+\Gm@layoutwidth=\dimen145
+\Gm@layoutheight=\dimen146
+\Gm@layouthoffset=\dimen147
+\Gm@layoutvoffset=\dimen148
+\Gm@dimlist=\toks18
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 107.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen149
+\Gin@req@width=\dimen150
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/tools/multicol.sty
+Package: multicol 2023/03/30 v1.9f multicolumn formatting (FMi)
+\c@tracingmulticols=\count199
+\mult@box=\box51
+\multicol@leftmargin=\dimen151
+\c@unbalance=\count266
+\c@collectmore=\count267
+\doublecol@number=\count268
+\multicoltolerance=\count269
+\multicolpretolerance=\count270
+\full@width=\dimen152
+\page@free=\dimen153
+\premulticols=\dimen154
+\postmulticols=\dimen155
+\multicolsep=\skip50
+\multicolbaselineskip=\skip51
+\partial@page=\box52
+\last@line=\box53
+\mc@boxedresult=\box54
+\maxbalancingoverflow=\dimen156
+\mult@rightbox=\box55
+\mult@grightbox=\box56
+\mult@firstbox=\box57
+\mult@gfirstbox=\box58
+\@tempa=\box59
+\@tempa=\box60
+\@tempa=\box61
+\@tempa=\box62
+\@tempa=\box63
+\@tempa=\box64
+\@tempa=\box65
+\@tempa=\box66
+\@tempa=\box67
+\@tempa=\box68
+\@tempa=\box69
+\@tempa=\box70
+\@tempa=\box71
+\@tempa=\box72
+\@tempa=\box73
+\@tempa=\box74
+\@tempa=\box75
+\@tempa=\box76
+\@tempa=\box77
+\@tempa=\box78
+\@tempa=\box79
+\@tempa=\box80
+\@tempa=\box81
+\@tempa=\box82
+\@tempa=\box83
+\@tempa=\box84
+\@tempa=\box85
+\@tempa=\box86
+\@tempa=\box87
+\@tempa=\box88
+\@tempa=\box89
+\@tempa=\box90
+\@tempa=\box91
+\@tempa=\box92
+\@tempa=\box93
+\@tempa=\box94
+\c@minrows=\count271
+\c@columnbadness=\count272
+\c@finalcolumnbadness=\count273
+\last@try=\dimen157
+\multicolovershoot=\dimen158
+\multicolundershoot=\dimen159
+\mult@nat@firstbox=\box95
+\colbreak@box=\box96
+\mc@col@check@num=\count274
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/titlesec/titlesec.sty
+Package: titlesec 2023/10/27 v2.16 Sectioning titles
+\ttl@box=\box97
+\beforetitleunit=\skip52
+\aftertitleunit=\skip53
+\ttl@plus=\dimen160
+\ttl@minus=\dimen161
+\ttl@toksa=\toks19
+\titlewidth=\dimen162
+\titlewidthlast=\dimen163
+\titlewidthfirst=\dimen164
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/wrapfig/wrapfig.sty
+\wrapoverhang=\dimen165
+\WF@size=\dimen166
+\c@WF@wrappedlines=\count275
+\WF@box=\box98
+\WF@everypar=\toks20
+Package: wrapfig 2003/01/31  v 3.6
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/blindtext/blindtext.sty
+Package: blindtext 2012/01/06 V2.0 blindtext-Package
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/tools/xspace.sty
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+)
+\c@blindtext=\count276
+\c@Blindtext=\count277
+\c@blind@countparstart=\count278
+\blind@countxx=\count279
+\blindtext@numBlindtext=\count280
+\blind@countyy=\count281
+\c@blindlist=\count282
+\c@blindlistlevel=\count283
+\c@blindlist@level=\count284
+\blind@listitem=\count285
+\c@blind@listcount=\count286
+\c@blind@levelcount=\count287
+\blind@mathformula=\count288
+\blind@Mathformula=\count289
+\c@blind@randomcount=\count290
+\c@blind@randommax=\count291
+\c@blind@pangramcount=\count292
+\c@blind@pangrammax=\count293
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/lipsum/lipsum.sty (/usr/local/texlive/2024/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty (/usr/local/texlive/2024/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2024-03-14 L3 programming layer (loader) 
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2024-03-14 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count294
+\l__pdf_internal_box=\box99
+))
+Package: l3keys2e 2024-03-14 LaTeX2e option processing using LaTeX3 keys
+)
+Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
+\g__lipsum_par_int=\count295
+\l__lipsum_a_int=\count296
+\l__lipsum_b_int=\count297
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/lipsum/lipsum.ltd.tex)) (/usr/local/texlive/2024/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen167
+\captionmargin=\dimen168
+\caption@leftmargin=\dimen169
+\caption@rightmargin=\dimen170
+\caption@width=\dimen171
+\caption@indent=\dimen172
+\caption@parindent=\dimen173
+\caption@hangindent=\dimen174
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count298
+\c@continuedfloat=\count299
+Package caption Info: wrapfig package is loaded.
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count300
+\lst@gtempboxa=\box100
+\lst@token=\toks21
+\lst@length=\count301
+\lst@currlwidth=\dimen175
+\lst@column=\count302
+\lst@pos=\count303
+\lst@lostspace=\dimen176
+\lst@width=\dimen177
+\lst@newlines=\count304
+\lst@lineno=\count305
+\lst@maxwidth=\dimen178
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstpatch.sty
+File: lstpatch.sty 2024/03/11 1.10a (Carsten Heinz)
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2024/03/11 1.10a (Carsten Heinz)
+\c@lstnumber=\count306
+\lst@skipnumbers=\count307
+\lst@framebox=\box101
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2024/03/11 1.10a listings configuration
+))
+Package: listings 2024/03/11 1.10a (Carsten Heinz)
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+Package: fancyhdr 2022/11/09 v4.1 Extensive control of page headers and footers
+\f@nch@headwidth=\skip54
+\f@nch@O@elh=\skip55
+\f@nch@O@erh=\skip56
+\f@nch@O@olh=\skip57
+\f@nch@O@orh=\skip58
+\f@nch@O@elf=\skip59
+\f@nch@O@erf=\skip60
+\f@nch@O@olf=\skip61
+\f@nch@O@orf=\skip62
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/nopageno/nopageno.sty
+Package: nopageno 1989/01/01 no page numbers (DPC)
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/preprint/authblk.sty
+Package: authblk 2001/02/27 1.3 (PWD)
+\affilsep=\skip63
+\@affilsep=\skip64
+\c@Maxaffil=\count308
+\c@authors=\count309
+\c@affil=\count310
+) (./main.aux)
+\openout1 = `main.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(42.67912pt, 512.14963pt, 42.67912pt)
+* v-part:(T,H,B)=(99.58464pt, 644.05556pt, 101.40665pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=512.14963pt
+* \textheight=644.05556pt
+* \oddsidemargin=-29.59087pt
+* \evensidemargin=-29.59087pt
+* \topmargin=-9.68535pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+(/usr/local/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count311
+\scratchdimen=\dimen179
+\scratchbox=\box102
+\nofMPsegments=\count312
+\nofMParguments=\count313
+\everyMPshowfont=\toks22
+\MPscratchCnt=\count314
+\MPscratchDim=\dimen180
+\MPnumerator=\count315
+\makeMPintoPDFobject=\count316
+\everyMPtoPDFconversion=\toks23
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+))
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: listings package is loaded.
+Package caption Info: End \AtBeginDocument code.
+\c@lstlisting=\count317
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 69.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 69.
+
+Underfull \hbox (badness 10000) in paragraph at lines 56--75
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--99
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 100--125
+
+ []
+
+[1
+
+{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+Underfull \hbox (badness 10000) in paragraph at lines 126--137
+
+ []
+
+[2] (./main.aux)
+ ***********
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-03-14>
+ ***********
+ ) 
+Here is how much of TeX's memory you used:
+ 5957 strings out of 474104
+ 100732 string characters out of 5743473
+ 1944493 words of memory out of 5000000
+ 28301 multiletter control sequences out of 15000+600000
+ 558674 words of font info for 38 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 79i,11n,93p,779b,279s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on main.pdf (2 pages, 78513 bytes).
+PDF statistics:
+ 41 PDF objects out of 1000 (max. 8388607)
+ 24 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

@@ -1,0 +1,141 @@
+\documentclass[10pt]{article}
+\usepackage[a4paper, left=1.5cm, right=1.5cm, top=3.5cm]{geometry}
+%\usepackage[german]{babel}
+\usepackage[]{graphicx}
+\usepackage[]{multicol}
+\usepackage[]{titlesec}
+\usepackage[]{wrapfig}
+\usepackage[]{blindtext}
+\usepackage[]{lipsum}
+\usepackage[]{caption}
+\usepackage[]{listings}
+\usepackage[]{fancyhdr}
+\usepackage[]{nopageno}
+\usepackage[]{authblk}
+\graphicspath{{images/}}
+\fancyhf[]{}
+
+% own fig. env. for multicols
+\newenvironment{Figure}
+  {\par\medskip\noindent\minipage{\linewidth}}
+  {\endminipage\par\medskip}
+
+\begin{titlepage}
+    \title{Gedächnissprotokoll}
+    \author{von einem Studenten}
+    \date{\today}
+\end{titlepage}
+%\let\runauthor\@author
+
+\begin{document}
+\pagenumbering{gobble}
+%\maketitle
+%\newpage
+
+%\tableofcontents
+%\newpage
+
+\pagenumbering{arabic}
+
+\pagestyle{fancy}
+\fancyhead[R]{\thepage}
+\fancyhead[L]{\leftmark}
+
+\begin{multicols}{2}
+\section{Vorwort}
+Alle Angaben sind ohne Gewähr. Die Prüfung hat insgesamt ca. 70 Minuten gedauert. Diese Angabe kann um bis zu 10 Minuten überschätzt sein. Für p1 habe ich eine 1,7 und für p2+p3 eine 1,3 erhalten.
+
+Der Prüfer Herr Wermes war sehr nett und hat immer geholfen, falls man nicht weiter wusste. Der Beisitzer war mir unbekannt und hat über die gesammte Prüfung hinweg nichts gesagt und nur Notizen gemacht. Ich hatte oft den Eindruck, dass man an einander vorbei redet, oder ich nicht wusste was er genau meint. Ich habe oft etwas gesagt, mit dem er nicht zufrieden war und er hat dann nochmal nachgefragt, bis ich dann meistens das Richtige gesagt habe. In diesem Protokoll habe nicht alle Nachfragen aufgeschrieben. Sie waren deutlich öfter als jetzt hier dargestellt. Alles was in Anführungszeichen ist, soll nur den Sinn der Aussage wiedergeben und nicht den genauen Wortlaut. Mit P wird Prüfer abgekürtzt und mit S wird Student abgekürtzt.
+
+Zu beginn wurde ich gefragt mit was ich beginnen wollte. Ich habe mit dem physikalischen Pendel begonnen. Alles Folgende wurde von dem Prüfer vorgegeben.
+
+Nach der Prüfung wurde ich gefragt, ob ich meine Note jetzt haben möchte, oder erst nach dem sie die Leistung mit den anderen Prüfungen verglichen haben.
+
+
+\section{Mechanik (ca. 25 min.)}
+P: "Was ist ein physikalisches Pendel?"\\
+S: "Es schwingt ein ausgedehnter Körper im Kontrast zur Punktmasse."\\
+P: "Was ist die Definition vom Trägheitsmoment? "\\
+S: "Ein Maß für das Widerstreben einer Drehung." Formel mit dem Integral.\\
+P: "Wie ist der Versuchsaufbau?"\\
+S: Erklärt anhand von der Scheibe den Aufbau. Malt den Versuchsaufbau auf. Schreibt die Differentialgleichung auf. Leitet Eigenfrequenz her.\\
+P: "Wie sieht das Diagramm dazu aus?"\\
+S: Zeichnet Amplitude gegen Zeit für alle drei Fälle auf.\\
+P: "Fallen Ihnen Beispiele ein für den aperiodischen Gernzfall ein?"\\
+S: "Eine Bremese beim Auto oder im P2 das Galvanometer."\\
+P: "Verringert sich die Eigenfrequenz mit der Reibung?"\\
+S: (Hab in nem Altprotokoll gehört, dass das passiert, dürfte aber nach Formel eigentlich nicht passieren) "Ja sie verringert sich ein wenig".\\
+P: Nein, nur wenn es eine angeregte Schwingung ist. Kommen wir wieder zur Durchführung zurück.\\
+S: Habe die Formel für \(T^2a\) hergeleitet mich dann aber irgendwie vertan und war dann verwirrt, wie man die Achsen dann im Plot aufträgt. Hier wurde einige Zeit verschwendet.\\
+P: "Was misst du?"\\
+S: "Periodendauert T und Aufhängungsabstand a." Ich habe übel lange es nicht hinbekommen, das herzuleiten, wie ich was gegen was auftrage und hab mich dabei selber verunsichert, obwohl ich es eigentlich wusste, es aber anhand der Formel zeigen wollte.\\
+P: Einige Versuche zu fragen was ich messe.\\
+S: Irgendwann kam ich darauf, dass ich die Sachen, die ich vorher messe noch mitteln muss.\\
+P: Ja genau.\\
+
+\section{Statistik (ca. 20 min.)}
+P: Hat mir einige Werte und dessen Mittelwert angebeben. "Was ist der Fehler?" \\
+S: "0 weil keiner der Werte einen Fehler hat." \\
+P: "Falsch."\\
+S: Veruche zu erklären, was Standardabweichung ist und schreib Formeln für Standardabweichung und für Varianz auf. \\
+P: Der Fehler ist die Varianz. Versucht es mit einer Gausskurve zu erklären. Erzählt einiges über Standardabweichung und Varianz.\\
+S: Ich nicke und sag "ahhhh" und hab immer noch keine Ahnung.\\
+P: "Das ab jetzt ist nicht mehr Teil der Prüfung."\\
+S: Denkt sich seinen Teil.\\
+P: "Was macht eine Fit?"\\
+S: "Chi quad. muss verringert werden."\\
+P: "Jain, was ist Chi quad.?" \\
+S: "Es ist Maß für die Güte des Fits."\\
+P: "Was bedeutet das Intiuitiv?"\\
+S: "Abstand des Fits zu den Punkten."\\
+P: Versucht weiter eine Antwort auf die vorherige Frage raus zu bekommen. \\
+S: Ist verwirrt.\\
+P: "Das Abstandsquadrat muss minimiert werden. Warum ist das Chi quad. quadriet?"\\
+S: "Weil der Exponent der Gaussverteilung auch mit dem quadrat funtioniert."\\
+P: "Auch. Weißt du wie die Gaussverteilung aussieht?"\\
+S: Versucht irgendwas zusammen zu wurschteln.\\
+P: "Fast". Schreibt die Formel auf.\\
+P: Erklärt, dass die Fehler selber auch alle Gaußverteilt sind.\\
+\section{Elektromagnetismus (ca. 15 min.)}
+P: "Jetzt machen wir mit Wechselstrom weiter. Male mal eine Schaltung mit entsprechenden Bauteilen auf."\\
+S: Zeichnet den erzwungenen RCL-Schwingkreis.\\
+P: "Wie verschieben die Bauteile die Phase?"\\
+S: "Kondensator mit \(-\frac{\pi}{2}\), Spule mit \(+\frac{\pi}{2}\) und der Widerstand verschiebt die Phase nicht."\\
+P: "Wie sieht das über eine Kombination von verschiedenen Bauteilen aus?"\\
+S: "Dabei muss man Spannung/Strom über Impedanz berechnen."\\
+P: "Wie sieht die Resonanzkurve aus?"\\
+S: Malt Resonanzkurve von RCL Schwingkreis: Ladung q auf y-Achse, omega/omega0 auf x-Achse. Die Resonanzkurve beginnt bei 1.\\
+P: "Wie sieht der für Strom und Spannung aus?"\\
+S: "Genau so."\\
+P: "Nein, die Kurve beginnt nicht bei 1, sondern bei Nähe 0. Wie ist das bei dem Pohlschen Drehpendel?"\\
+S: "Der Impuls oder die Energie starten dort bei 0."\\
+P: "Falsch, es ist die Geschwindigkeit"\\
+S: Ich denke, dass zumindest Impuls auch richtig ist, da der Unterschied zur Geschwindigkeit nur die Masse ist.\\
+P: "Wie kann man die Phase variieren?"\\
+S: Malt und erklärt Phasenschieber.\\
+P: "Wie sieht das in einem Diagramm aus?"\\
+S: Malt Zeigerdiagramm auf und erklärt es.\\
+P: "Welche Bedingungen gibt es dort?"\\
+S: "Punkt B muss auf dem Halbkreis liegen und A muss in der Mitte bleiben. Also muss \(R\), \(R_x\) und \(R_y\) so variiert werden, dass die Endspannung gleich der Eingangsspannung bleibt."\\
+P: "Wie sieht das in dem Diagramm aus?"\\
+S: "Der Betrag der Inpedanz von dem Kondensator und dem einstellbaren Widerstand müssen gleich der Summe der Widerstände des Potentiometers sein."\\
+P: "Jain, wie ist der Winkel zwischen Spannung des Widerstands und Spannung des Kondensators?"\\
+S: "Rechter Winkel."\\
+P: "Genau!"\\
+\section{Optik (ca. 10 min.)}
+P: "Hier, wie kann man mit einer Linse schwarf sehen?" Gibt bikonvexe Linse.\\
+S: Erkennt direkt, dass auf der Linse eine positive Brennweite steht und nach außen gewölbt ist. "Das ist eine bikonkarve Linse und .. ich meine das ist eine bikonvexe Linse."\\
+P: Gleichzeitig "Nein, das ist eine bikonvexe Linse."\\
+S: Erklärt mit verschiedenen Abständen relativ zu Brennweite ob reell oder virtuell und begründet damit in welcher Entfernung die Linse gehalten werden muss.\\
+P: "Wann ist das Bild reel und virtuell?"\\
+S: Erklärt es nochmal.\\
+P: "Wie bestimmt man von einem Linsensystemen die Haupebenen?" \\
+S: Erklärt mit Formeln das Abbe Verfahren.\\
+P: "Was trägt man gegeneinander auf?" \\
+S: Ein bisschen zögerlich "x gegen 1/gamma"\\
+P: "Nein, x gegen \((1+\frac{1}{\gamma})\)."\\
+
+
+\end{multicols}
+
+\end{document}
