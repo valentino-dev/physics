@@ -1,0 +1,225 @@
+\documentclass[10pt]{article}
+%\documentclass[a4paper]{article}
+\usepackage[a4paper, left=1.5cm, right=1.5cm, top=3.5cm]{geometry}
+\usepackage[ngerman]{babel}
+\usepackage[]{graphicx}
+\usepackage{minted}
+\usepackage[]{multicol}
+\usepackage[]{titlesec}
+\usepackage[]{wrapfig}
+\usepackage[]{blindtext}
+\usepackage[]{lipsum}
+\usepackage[]{caption}
+\usepackage[]{listings}
+\usepackage[]{fancyhdr}
+\usepackage[]{nopageno}
+\usepackage[]{authblk}
+\usepackage[]{amsmath}
+\usepackage[]{esdiff}
+\usepackage{gnuplottex}
+\usepackage{xcolor}
+\usepackage{csquotes}
+\usepackage{gnuplottex}
+%\graphicspath{{./images/}}
+\fancyhf[]{}
+
+% own fig. env. for multicols
+\newenvironment{Figure}
+  {\par\medskip\noindent\minipage{\linewidth}}
+  {\endminipage\par\medskip}
+
+\begin{titlepage}
+    \title{Computerphysik -- Abgabe 1}
+    \author[1]{Michael J. P. Vogt\thanks{s65mvogt@uni-bonn.de}}
+    \author[1]{Angelo V. Brade\thanks{s72abrad@uni-bonn.de}}
+    \affil[1]{Rhenish Friedrich Wilhelm University of Bonn}
+    \date{\today}
+\end{titlepage}
+
+\begin{document}
+\pagenumbering{gobble}
+\maketitle
+\newpage
+
+\tableofcontents
+\newpage
+
+\pagenumbering{arabic}
+
+\pagestyle{fancy}
+\fancyhead[R]{\thepage}
+\fancyhead[L]{\leftmark}
+
+\begin{multicols}{2}
+  \section{Nullstellen} \label{sec:nullstellen}
+  Um in der Physik Nullstellen für eine Funktion \(
+    f(x)
+    \) zu finden, können Verfahren, wie das das Newton-Raphson-, Bisektions- und das Sekantenverfahren, verwendet werden. Für das Newton-Raphson Verfahren wird die erste Ableitung \(f'(x)\) benötigt. Ohne der ersten Ableitung kann man aber die zwei letzteren Verfahren verwenden.
+  \subsection{Bisektionsverfahren}
+  Nach dem Bisektionsverfahren start man bei den Werten \(x_0=a\textrm{ und }x_1=b\), um damit das Mittel \(\tilde{x}=\frac{x_i+x_{i-1}}{2}\) zu berechnen. Sollte nun \(f(\tilde{x})\cdot f(x_{i-1}) < 0\) sein, so wird \(x_{i+1}=\tilde{x}\) und \(x_i=x_{i-1}\). Andernfalls ist \(f(\tilde{x})\cdot f(x_{i}) < 0\) und \(x_{i+1}=x_i\) und \(x_i=\tilde{x}\). Mit jedem Schritt wird nun \(\tilde{x}\) neu berechnet und \(x_i\) und \(x_{i+1}\) neu gewählt.
+  \subsection{Sekantenverfahren}
+  Für das Sekanten Verfahren wird einfach 
+\begin{equation}
+  x_{i+1}=x_i-f(x_i)\frac{x_i-x_{i-1}}{f(x_i)-f(x_{i-1})}
+\end{equation} 
+   berechnet, um eine, sich dem Nullpunkt nähernde, Sekante zu bestimmen.
+\subsection{Implementierung}
+
+  Diese werden praktisch Implementiert und an den Funktionen
+
+\begin{tabular}{p{3.2cm}p{3.2cm}}
+  \begin{equation}
+    f(x)=x-\cos{x}
+  \end{equation}
+  &
+  \begin{equation}
+    f(x)=x^2-5
+  \end{equation}\\
+  \begin{equation}
+    f(x)=\tan{x}
+  \end{equation}
+  &
+  \begin{equation}
+    f(x)=\tanh{x}
+  \end{equation}
+\end{tabular}
+
+getestet. Die Voreinstellungen und die entsprechend gefundenen Nullstellen, sowie die benötigten Schritte sind in Tabelle~\ref{Tab:Tcr} zu finden.\\
+\end{multicols}
+  \begin{table}[h]
+\begin{center}
+    \caption{Presets und Nullstellen. Die genauen Werte sind unter "data/zero\_data\_biseciton" und "data/zero\_data\_secant" zu finden.}
+    
+\begin{tabular}{|cccccccc|}
+  \hline
+\(f(x)\)&\(x_l\)&\(x_h\)&tol&\(x_{\text{sek}}\)&\(steps_{\text{sek}}\)&\(x_{\text{bi}}\)&\(steps_{\text{bi}}\)\\
+  \hline
+  \(x-\cos{x}\)&\(-1\)&\(3\)&\(10^{-8}\)&\(0.7391\)&7&\(0.7288\)&13\\
+  \(\)&\(-1\)&\(4\)&\(10^{-8}\)&0.7391&6&0.7389&13\\
+  \(\)&\(-1\)&\(5\)&\(10^{-8}\)&0.7391&6&0.7385&13\\
+  \hline
+  \(x^2-5\)&\(-3\)&\(-2\)&\(10^{-8}\)&-2.2361&5&-2.2361&12\\
+  \(\)&\(2\)&\(3\)&\(10^{-8}\)&2.2361&5&2.2361&12\\
+  \(\)&\(2\)&\(4\)&\(10^{-8}\)&2.2361&6&2.2361&13\\
+  \hline
+  \(\tanh{x}\)&\(-1\)&\(1.5\)&\(10^{-8}\)&-0.00000&6&0.00001&13\\
+  \(\)&\(-1\)&\(2\)&\(10^{-8}\)&0.00000&6&0.00001&13\\
+  \(\)&\(-1\)&\(3\)&\(10^{-8}\)&-nan&6&0.9995&13\\
+  \hline
+  \(\tan{x}\)&\(-1\)&\(1.5\)&\(10^{-8}\)&-0.0000&8&0.0001&13\\
+  \(\)&\(-1\)&\(1.55\)&\(10^{-8}\)&-0.0000&8&0.0001&13\\
+  \(\)&\(-1\)&\(1.56\)&\(10^{-8}\)&-0.0000&8&-0.0003&13\\
+  \hline
+\end{tabular}
+\label{Tab:Tcr}
+\end{center}
+  \end{table}
+
+\begin{multicols}{2}
+
+  Zu erkennen ist, dass in den gegebenen Wertebereichen von \(x_l\) bis \(x_h\) die entsprechende Nullstelle gefunden wurde.
+  Unerwartet ist die Ausgabe "-nan" beim \(tanh(x)\) für das Sekantenverfahren und 0.9995 für das Bisektionsverfahren, obwohl die Nullstelle bei Null liegen sollte. "nan" erhällt man, wenn durch Null geteilt werden würde. Für das Sekantenverfahren erbibt sich diese Möglichkeit für den Fall \(f(x_i)=f(x_{i-1})\), sollte die Präzision des Datentyps "double" zu klein sein. Die Ausgabe für das Bisektionsverfahren ist dabei deutlich schwerer zu erklären, da bei \(f(x)=0.9995\) das Abbruchkriterium noch nicht erfüllt sein sollte, außer der Algoithmus konvergiert zu langsamm, sodass \(\frac{|x_l-x_h|}{2^{\text{Schritte}}}>\text{tol}\) nicht mehr erfüllt ist.
+  
+
+\subsection{Konvergenzgeschwindigkeit}
+Um die Konvergenzgeschwindigkeit zu vergleichen werden die Sekanten- und die Bisektionsverfahren auf die ersten beiden Funktionen angewandt und gemessen, wie viele Schritte benötigt werden, um die gewünschte Präzision zu erreichen. Die Geschwindigkeit beschreibt dabei das Verhältniss zwischen Anzahl an Schritten und erreichter Präzesion. Dabei ist die Anzahl der Schritte als Funktion der Präzision zu verstehen.
+
+\begin{Figure}
+  \centering\include{zeros_f1.tex}
+  \captionof{figure}{Vergleich für $f(x)=x-\cos{x}$. Die Daten sind unter "data/zero\_data\_f1 zu finden.}
+\end{Figure}
+\begin{Figure}
+  \centering\include{zeros_f2.tex}
+  \captionof{figure}{Vergleich für $f(x)=x^2-5$. Die Daten sind unter "data/zero\_data\_f2" zu finden.}
+\end{Figure}
+
+Beim Vergleich zwischen den beiden Verfahren fällt auf, dass das Sekantenverfahren ca. um den Faktor 5 schneller Konvergiert. Dieser Faktor ist für beide Funktionen konstant. Zusätzlich wird erkennbar, dass die benötigten Schritte mit dem zehner Logarythmus linear steigt
+
+Beim Vergleich zwischen den beiden Funktionen fällt auf, dass die Nullstelle für (3) von beiden Verfahren schneller angenähert wird.
+
+
+  \section{Dampfdruckkurve der Van der Waals-Gleichung}
+
+  \subsection{analytische Gleichung}
+  \begin{align}
+    p(u, t) &= \frac{8t}{3u-1} - \frac{3}{u^2} \label{eq:vdw-universal} \\
+    \int_f^g du\,p(u, t) &= p_D(t)\,(g-f) \label{eq:vdw-integral} \\
+    p_D(t) &= p(f, t) = p(g, t) \label{eq:pd-equality}
+  \end{align}
+  Wir berechnen das Integral auf der linken Seite von (\ref{eq:vdw-integral}) 
+  und setzen (\ref{eq:pd-equality}) in die rechte Seite ein.
+  \begin{align}
+    &\frac{8t}{3} \left[\ln{(3u-1)}\right]_f^g + 3 \left[\frac{1}{u}\right]_f^g = p(f, t)\,(g-f) \nonumber \\
+    \iff &\frac{8t}{3} \ln{\left(\frac{3g-1}{3f-1}\right)} + 3\left(\frac{1}{g} - \frac{1}{f}\right) = \nonumber \\
+    &8t\, \frac{g-f}{3f-1} - \frac{3g}{f^2} + \frac{3}{f} \nonumber \\
+    \iff &3 \left(\frac{f^2}{f^2\,g} - \frac{f\,g}{f^2\,g} + \frac{g^2}{f^2\,g} - \frac{f\,g}{f^2\,g}\right) = \nonumber \\
+    &8t \left(\frac{g-f}{3f-1} - \frac{1}{3} \ln{\left(\frac{3g-1}{3f-1}\right)} \right) \nonumber \\
+    \iff &8t \left(\frac{g-f}{3f-1} - \frac{1}{3} \ln{\left(\frac{3g-1}{3f-1}\right)} \right)
+    - \frac{3(f-g)^2}{f^2g} = 0 \label{eq:root-eq}
+  \end{align}
+  Außerdem berechnen wir (\ref{eq:pd-equality}) explizit:
+  \begin{align}
+    \frac{8t}{3f-1} - \frac{3}{f^2} &= \frac{8t}{3g-1} - \frac{3}{g^2} \nonumber \\
+    8t \left(\frac{1}{3g-1} - \frac{1}{3f-1}\right) &= \frac{3}{g^2} - \frac{3}{f^2} \nonumber \\
+    8t \frac{3f-1-3g+1}{(3g-1)(3f-1)} &= 3 \frac{f^2-g^2}{g^2f^2} \nonumber \\
+    8t \frac{3(f-g)}{(3g-1)(3f-1)} &= 3\frac{(f+g)(f-g)}{g^2f^2} \nonumber \\
+    \frac{8t}{(3g-1)(3f-1)} &= \frac{(f+g)}{g^2f^2}
+  \end{align}
+  Dies können wir nach g umstellen:
+  \begin{align*}
+    &f^2g^2 \\
+    &= \frac{ (g+f)(3g-1)(3f-1) }{8t} \\
+    &= \frac{ (g+f)3g(3f-1)-3(3f-1) }{8t} \\
+    &= \frac{ 3g^2(3f-1) - g(3f-1) + 3g\,f(3f-1) - f(3f-1) }{8t} \\
+    &= \frac{ 3g^2(3f-1) + g(3f-1)(3f-1) - f(3f-1) }{8t} \\
+    &g^2[8tf^2 - 3(3f-1)] - g(3f-1)^2 + f(3f-1) = 0 \\
+    &g^2 - \frac{g(3f-1)^2}{[8tf^2 - 3(3f-1)]} + f(3f-1) = 0 \\
+  \end{align*}
+  Wir erweitern den letzten Summanden mit \\ $4[8tf^2 - 3(3f-1)]$ und erhalten über die pq-Formel (wobei wir die Lösung mit $+$ verwenden):
+  \begin{align}
+    g &= \frac{(3f-1)^2}{2[8tf^2 - 3(3f-1)]} \nonumber \\
+    &+ \sqrt{\frac{ (3f-1)^4-4f(3f-1)[8tf^2 - 3(3f-1)] }{4[8tf^2 - 3(3f-1)]}} \nonumber \\
+    g &= \label{eq:g-of-f}\\
+    &\frac{(3f-1)^2 + \sqrt{(3f-1)^4-4f(3f-1)[8tf^2 - 3(3f-1)]}}{2[8tf^2 - 3(3f-1)]} \nonumber
+  \end{align}
+
+  \subsection{Berechnung und Darstellung der Isothermen} % Hier sagt mir meine IDE, dass es zu lang ist. @Michi------------------
+  Wir wollen zunächst sinnvolle Intervallgrenzen $f_l, f_h$ für die Nullstellensuche von (\ref{eq:root-eq}) finden.
+  Für $t \geq 1$ entsteht keine \enquote{vdW-Schleife} die korrigiert werden müsste, also ist die Maxwell-Konstruktion in diesem Fall nicht notwendig.
+  Falls die Konstruktion notwendig ist und $p(u, t)$ keine Nullstellen hat, d.h. wenn $\frac{27}{32}<t<1$, nehmen wir als obere Grenze $f_h$ das erste Minimum der vdW-Kurve,
+  indem wir die Nullstelle der Ableitung $\diffp{p}{u}$ im Bereich $\frac{1}{3} < u < 1$ bestimmen. 
+  \begin{equation}
+    \diffp{p}{u} = \frac{6}{u^3} - \frac{24t}{(3u-1)^2} 
+  \end{equation}
+  Falls $p$ Nullstellen hat, d.h. $t \leq \frac{27}{32}$ verwenden wir für $f_h$ die erste Nullstelle bei
+  \begin{equation}
+    f_h = \frac{9-\sqrt{81-96t}}{16t}
+  \end{equation}
+  Als Untergrenze $f_l$ finden wir die Nullstelle der Diskriminante $(3f-1)^4-4f(3f-1)[8tf^2 - 3(3f-1)]$ aus (\ref{eq:g-of-f}),
+  im Bereich $\frac{1}{3} < u < f_h$ d.h. den $f$-Wert, ab dem die Maxwell-Konstruktion vollständig über der \enquote{vdW-Schleife} liegen würde.
+  
+
+  Mit den so gefundenen Grenzen können wir $f$ als Nullstelle von (\ref{eq:root-eq}) (mit \ref{eq:g-of-f} eingesetzt) finden.
+  Wenn $f$ bekannt ist, bestimmen wir $g(f)$ über \ref{eq:g-of-f}.
+  Die Maxwell-Konstruktion entsteht dann durch Verwenden von $p(u, t) = p(f, t)$ solange $f \leq u \leq g$.
+  Die diversen Nullstellensuchen können mithilfe der Funktionen aus Teil \ref{sec:nullstellen} durchgeführt werden.
+
+  %Aus $f$ kann über \ref{eq:g-of-f} auch
+
+  \begin{Figure}
+    \centering\resizebox{\textwidth}{!}{\input{VDW2}}
+    \captionof{figure}{
+      Plot zu Aufg. $2.2$: vdW-Kurve und Maxwell-Konstruktion für verschiedene $t$.
+      Es ist zu erkennen, dass bei $t=1.0$ nötig ist.
+    }
+  \end{Figure}
+
+  Als nächstes berechnen wir die Dampfdruckkurve $p_D(t)$. Dazu wird erneut mit dem obigen Verfahren das jeweilige $f(t)$ bestimmt.
+  Dann ist $p_D(t) = p(u=f(t), t)$.
+
+  NOTE: muss bisection verwenden für Nullstelle der Ableitung.
+
+
+\end{multicols}
+
+\end{document}
