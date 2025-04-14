@@ -1,12 +1,14 @@
 \beamer@sectionintoc {1}{Historische Einordnung}{3}{0}{1}
 \beamer@subsectionintoc {1}{1}{Vorrangegangene Entwicklungen}{3}{0}{1}
 \beamer@subsectionintoc {1}{2}{Schrödingers Katze}{4}{0}{1}
-\beamer@sectionintoc {2}{Mikrowellen Resonator}{5}{0}{2}
-\beamer@subsectionintoc {2}{1}{Stehende Wellen und Moden}{5}{0}{2}
-\beamer@subsectionintoc {2}{2}{Spiegel}{8}{0}{2}
-\beamer@subsectionintoc {2}{3}{Q Faktor}{9}{0}{2}
-\beamer@sectionintoc {3}{QND}{12}{0}{3}
-\beamer@subsectionintoc {3}{1}{Rydberg-Atom}{13}{0}{3}
-\beamer@subsectionintoc {3}{2}{Ramsey Interferometer}{14}{0}{3}
-\beamer@sectionintoc {4}{Schrödingers Kätzchen}{15}{0}{4}
-\beamer@sectionintoc {5}{Zusammenfassung}{16}{0}{5}
+\beamer@subsectionintoc {1}{3}{Prinzip}{5}{0}{1}
+\beamer@sectionintoc {2}{Mikrowellen Resonator}{8}{0}{2}
+\beamer@subsectionintoc {2}{1}{Stehende Wellen und Moden}{8}{0}{2}
+\beamer@subsectionintoc {2}{2}{Spiegel}{10}{0}{2}
+\beamer@subsectionintoc {2}{3}{Q Faktor}{12}{0}{2}
+\beamer@sectionintoc {3}{QND}{15}{0}{3}
+\beamer@subsectionintoc {3}{1}{Rydberg-Atom}{16}{0}{3}
+\beamer@subsectionintoc {3}{2}{Ramsey Interferometer}{18}{0}{3}
+\beamer@sectionintoc {4}{Schrödingers Kätzchen}{19}{0}{4}
+\beamer@sectionintoc {5}{Ergebnisse}{20}{0}{5}
+\beamer@sectionintoc {6}{Zusammenfassung}{23}{0}{6}
