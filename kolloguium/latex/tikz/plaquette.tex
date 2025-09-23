@@ -1,0 +1,76 @@
+\begin{tikzpicture}[thick,decoration={
+				markings,
+				mark=at position 0.5 with {\arrow{>}}}
+	]
+
+	\tikzset{
+		site/.style={
+				circle, draw=gray, fill=gray!20, line width=1.5pt, inner sep=0pt, outer sep=4pt, minimum size=0.4cm
+			},
+		pcharge/.style={
+				circle, draw=red, fill=red!20, line width=1.5pt, inner sep=0pt, outer sep=4pt, minimum size=0.4cm
+			},
+		ncharge/.style={
+				circle, draw=blue, fill=blue!20, line width=1.5pt, inner sep=0pt, outer sep=4pt, minimum size=0.4cm
+			},
+	}
+
+	\node[site](e1){};
+	\node[site, right=1.5cm of e1](e2){};
+	\node[site, above=1.5cm of e1](e3){};
+	\node[site, above=1.5cm of e2](e4){};
+	\node[above=1.5cm of e4](a1){};
+	\node[right=1.5cm of e4](a2){};
+	\node[right=1.5cm of e2](a3){};
+	\node[above=1.5cm of e3](a4){};
+
+  \node[above of=e1, yshift=-0.7cm, xshift=0.3cm] (p11) {};
+  \node[above of=e1, yshift=-0.7cm, xshift=1.9cm] (p12) {};
+  \node[above of=e1, yshift=0.9cm, xshift=1.9cm] (p13) {};
+  \node[above of=e1, yshift=0.9cm, xshift=0.3cm] (p14) {};
+  \draw[postaction={decorate}, dashed] (p11) to (p12);
+  \draw[postaction={decorate}, dashed] (p12) to (p13);
+  \draw[postaction={decorate}, dashed] (p13) to (p14);
+  \draw[postaction={decorate}, dashed] (p14) to (p11);
+  \node[] at (1.1,1.1) {$\hat{P}_{(0,0)}$};
+
+  \node[above of=e2, yshift=-0.7cm, xshift=0.3cm] (p21) {};
+  \node[above of=e2, yshift=-0.7cm, xshift=1.9cm] (p22) {};
+  \node[above of=e2, yshift=0.9cm, xshift=1.9cm] (p23) {};
+  \node[above of=e2, yshift=0.9cm, xshift=0.3cm] (p24) {};
+  \draw[postaction={decorate}, dashed] (p21) to (p22);
+  \draw[postaction={decorate}, dashed] (p22) to (p23);
+  \draw[postaction={decorate}, dashed] (p23) to (p24);
+  \draw[postaction={decorate}, dashed] (p24) to (p21);
+  \node[] at (3.3,1.1) {$\hat{P}_{(1,0)}$};
+
+  \node[above of=e3, yshift=-0.7cm, xshift=0.3cm] (p31) {};
+  \node[above of=e3, yshift=-0.7cm, xshift=1.9cm] (p32) {};
+  \node[above of=e3, yshift=0.9cm, xshift=1.9cm] (p33) {};
+  \node[above of=e3, yshift=0.9cm, xshift=0.3cm] (p34) {};
+  \draw[postaction={decorate}, dashed] (p31) to (p32);
+  \draw[postaction={decorate}, dashed] (p32) to (p33);
+  \draw[postaction={decorate}, dashed] (p33) to (p34);
+  \draw[postaction={decorate}, dashed] (p34) to (p31);
+  \node[] at (1.1,3.3) {$\hat{P}_{(0,1)}$};
+
+  \node[above of=e4, yshift=-0.7cm, xshift=0.3cm] (p41) {};
+  \node[above of=e4, yshift=-0.7cm, xshift=1.9cm] (p42) {};
+  \node[above of=e4, yshift=0.9cm, xshift=1.9cm] (p43) {};
+  \node[above of=e4, yshift=0.9cm, xshift=0.3cm] (p44) {};
+  \draw[postaction={decorate}, dashed] (p41) to (p42);
+  \draw[postaction={decorate}, dashed] (p42) to (p43);
+  \draw[postaction={decorate}, dashed] (p43) to (p44);
+  \draw[postaction={decorate}, dashed] (p44) to (p41);
+  \node[] at (3.3,3.3) {$\hat{P}_{(1,1)}$};
+
+	\draw[postaction={decorate}] (e1) to (e2);
+	\draw[postaction={decorate}](e1) to (e3);
+	\draw[postaction={decorate}] (e3) to (e4);
+	\draw[postaction={decorate}] (e2) to (e4);
+
+	\draw[postaction={decorate}] (e2) to (a3);
+	\draw[postaction={decorate}] (e3) to (a4);
+	\draw[postaction={decorate}] (e4) to (a1);
+	\draw[postaction={decorate}] (e4) to (a2);
+\end{tikzpicture}

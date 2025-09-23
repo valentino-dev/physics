@@ -1,0 +1,26 @@
+\begin{tikzpicture}[thick,decoration={
+				markings,
+				mark=at position 0.5 with {\arrow{>}}}
+	]
+
+	\tikzset{
+		site/.style={
+				circle, draw=gray, fill=gray!20, line width=1.5pt, inner sep=0pt, outer sep=4pt, minimum size=0.4cm
+			},
+		pcharge/.style={
+				circle, draw=red, fill=red!20, line width=1.5pt, inner sep=0pt, outer sep=4pt, minimum size=0.4cm
+			},
+		ncharge/.style={
+				circle, draw=blue, fill=blue!20, line width=1.5pt, inner sep=0pt, outer sep=4pt, minimum size=0.4cm
+			},
+	}
+	\node[site](s1){};
+	\node[site, above of=s1, yshift=1cm](s2){};
+
+	\draw[postaction={decorate}] (s1)--(s2);
+
+  \node[above of=s1, yshift=0.2cm, xshift=-0.9cm](t1){$\hat{E}_{\vec{r}, y}$, $\hat{A}_{\vec{r}, y}$};
+  \node[below of=s1, yshift=0.4cm](t2){$Q_{\vec{r}}$};
+  \node[above of=s2, yshift=-0.4cm](t2){$Q_{\vec{r}+y}$};
+
+\end{tikzpicture}

@@ -1,0 +1,9 @@
+\babel@toc {ngerman}{}\relax 
+\beamer@sectionintoc {1}{Einleitung}{2}{0}{1}
+\beamer@sectionintoc {2}{Diskretesierung}{7}{0}{2}
+\beamer@sectionintoc {3}{Hamiltonsche Formulierung}{10}{0}{3}
+\beamer@sectionintoc {4}{Rechenaufwand}{16}{0}{4}
+\beamer@sectionintoc {5}{Resultate: Plaquette Erwartungswert}{18}{0}{5}
+\beamer@sectionintoc {6}{Resultate: Quark-Antiquark Potential}{20}{0}{6}
+\beamer@sectionintoc {7}{Outlook}{23}{0}{7}
+\beamer@sectionintoc {8}{Abschluss}{25}{0}{8}

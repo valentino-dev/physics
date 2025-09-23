@@ -1,0 +1,49 @@
+\begin{tikzpicture}[thick,decoration={
+				markings,
+				mark=at position 0.5 with {\arrow{>}}}
+	]
+
+	\tikzset{
+		site/.style={
+				circle, draw=gray, fill=gray!20, line width=1.5pt, inner sep=0pt, outer sep=4pt, minimum size=0.4cm
+			},
+		pcharge/.style={
+				circle, draw=red, fill=red!20, line width=1.5pt, inner sep=0pt, outer sep=4pt, minimum size=0.4cm
+			},
+		ncharge/.style={
+				circle, draw=blue, fill=blue!20, line width=1.5pt, inner sep=0pt, outer sep=4pt, minimum size=0.4cm
+			},
+	}
+
+	\node[site, right=4cm of s1](e1){};
+	\node[site, right=1.5cm of e1](e2){};
+	\node[site, above=1.5cm of e1](e3){};
+	\node[site, above=1.5cm of e2](e4){};
+	\node[above=1.5cm of e4](a1){};
+	\node[right=1.5cm of e4](a2){};
+	\node[right=1.5cm of e2](a3){};
+	\node[above=1.5cm of e3](a4){};
+
+  \draw[thick,->,>=stealth] (6.5,1.1) arc[start angle=0, end angle=350, radius=0.75]; % almost full circl
+  \node[] at (5.8,1.1) {$\hat{P}_{(0,0)}$};
+
+  \draw[thick,->,>=stealth] (6.5,3.3) arc[start angle=0, end angle=350, radius=0.75]; % almost full circl
+  \node[] at (5.8,3.3) {$\hat{P}_{(1,0)}$};
+
+  \draw[thick,->,>=stealth] (8.7,3.3) arc[start angle=0, end angle=350, radius=0.75]; % almost full circl
+  \node[] at (7.9,3.3) {$\hat{P}_{(0,0)}$};
+
+  \draw[thick,->,>=stealth] (8.7,1.1) arc[start angle=0, end angle=350, radius=0.75]; % almost full circl
+  \node[] at (7.9,1.1) {$\hat{P}_{(0,0)}$};
+
+
+	\draw[postaction={decorate}] (e1) to (e2);
+	\draw[postaction={decorate}] (e1) to (e3);
+	\draw[postaction={decorate}] (e3) to (e4);
+	\draw[postaction={decorate}] (e2) to (e4);
+
+	\draw[postaction={decorate}] (e2) to (a3);
+	\draw[postaction={decorate}] (e3) to (a4);
+	\draw[postaction={decorate}] (e4) to (a1);
+	\draw[postaction={decorate}] (e4) to (a2);
+\end{tikzpicture}

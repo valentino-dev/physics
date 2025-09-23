@@ -1,0 +1,32 @@
+\begin{tikzpicture}[thick,decoration={
+				markings,
+				mark=at position 0.5 with {\arrow{>}}}
+	]
+
+	\tikzset{
+		site/.style={
+				circle, draw=gray, fill=gray!20, line width=1.5pt, inner sep=0pt, outer sep=4pt, minimum size=0.4cm
+			},
+		pcharge/.style={
+				circle, draw=red, fill=red!20, line width=1.5pt, inner sep=0pt, outer sep=4pt, minimum size=0.4cm
+			},
+		ncharge/.style={
+				circle, draw=blue, fill=blue!20, line width=1.5pt, inner sep=0pt, outer sep=4pt, minimum size=0.4cm
+			},
+	}
+	\node[site](s1){};
+	\node[site, right=0.8cm of s1](s2){};
+	\node[site, above=0.8cm of s1](s3){};
+  \node[below=1cm of s1, text width=2.5cm](t1){Site: $(x,y)$\\
+    trägt Ladung};
+	\node[above=0.4cm of s1](a1){};
+  \node[left=1cm of s1, text width=2.5cm](t2){Link: ${(x,y),\mu}$\\
+    trägt Feld};
+
+
+	\draw[postaction={decorate}] (s1)--(s2);
+	\draw[postaction={decorate}] (s1)--(s3);
+  \draw[-{Stealth[length=5mm]}] (t1)--(s1);
+  \draw[-{Stealth[length=5mm]}] (t2)--(a1);
+
+\end{tikzpicture}

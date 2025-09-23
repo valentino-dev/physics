@@ -1,0 +1,59 @@
+\begin{tikzpicture}[thick,decoration={
+				markings,
+				mark=at position 0.5 with {\arrow{>}}}
+	]
+
+	\tikzset{
+		site/.style={
+				circle, draw=gray, fill=gray!20, line width=1.5pt, inner sep=0pt, outer sep=4pt, minimum size=0.4cm
+			},
+		pcharge/.style={
+				circle, draw=red, fill=red!20, line width=1.5pt, inner sep=0pt, outer sep=4pt, minimum size=0.4cm
+			},
+		ncharge/.style={
+				circle, draw=blue, fill=blue!20, line width=1.5pt, inner sep=0pt, outer sep=4pt, minimum size=0.4cm
+			},
+	}
+	\node[site](s1){};
+	\node[site, right=1.5cm of s1](s2){};
+	\node[site, above=1.5cm of s1](s3){};
+	\node[site, above=1.5cm of s2](s4){};
+
+	\draw[postaction={decorate}] (s1) to[out=45,in=135] (s2);
+	\draw[postaction={decorate}] (s1) to[out=45,in=-45] (s3);
+	\draw[postaction={decorate}] (s3) to[out=-45,in=-135] (s4);
+	\draw[postaction={decorate}] (s2) to[out=135,in=-135] (s4);
+
+	\draw[postaction={decorate}] (s2) to[out=-135,in=-45] (s1);
+	\draw[postaction={decorate}] (s3) to[out=-135,in=135] (s1);
+	\draw[postaction={decorate}] (s4) to[out=-45,in=45] (s2);
+	\draw[postaction={decorate}] (s4) to[out=135,in=45] (s3);
+
+
+	\node[site, right=4cm of s1](e1){};
+	\node[site, right=1.5cm of e1](e2){};
+	\node[site, above=1.5cm of e1](e3){};
+	\node[site, above=1.5cm of e2](e4){};
+	\node[above=1.5cm of e4](a1){};
+	\node[right=1.5cm of e4](a2){};
+	\node[right=1.5cm of e2](a3){};
+	\node[above=1.5cm of e3](a4){};
+
+  \node[above=0.75cm of s1](a9){};
+  \node[right=3.05cm of a9](a8){\huge{$\Leftrightarrow$}};
+
+
+
+	\draw[postaction={decorate}] (e1) to (e2);
+	\draw[postaction={decorate}] (e1) to (e3);
+	\draw[postaction={decorate}] (e3) to (e4);
+	\draw[postaction={decorate}] (e2) to (e4);
+
+	\draw[postaction={decorate}] (e2) to (a3);
+	\draw[postaction={decorate}] (e3) to (a4);
+	\draw[postaction={decorate}] (e4) to (a1);
+	\draw[postaction={decorate}] (e4) to (a2);
+
+
+
+\end{tikzpicture}
