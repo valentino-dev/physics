@@ -1,0 +1,37 @@
+	\begin{tikzpicture}[thick,decoration={
+					markings,
+					mark=at position 0.5 with {\arrow{>}}}
+		]
+
+		\tikzset{
+			site/.style={
+					circle, draw=gray, fill=gray!20, line width=1.5pt, inner sep=0pt, outer sep=4pt, minimum size=0.4cm
+				},
+			pcharge/.style={
+					circle, draw=red, fill=red!20, line width=1.5pt, inner sep=0pt, outer sep=4pt, minimum size=0.4cm
+				},
+			ncharge/.style={
+					circle, draw=blue, fill=blue!20, line width=1.5pt, inner sep=0pt, outer sep=4pt, minimum size=0.4cm
+				},
+		}
+
+    \node[site] (s1) {$Q_{\vec{r}}$};
+    \node[right of=s1, xshift=0.8cm] (a1) {};
+    \node[below of=s1, yshift=-0.8cm] (a2) {};
+    \node[left of=s1, xshift=-0.8cm] (a3) {};
+    \node[above of=s1, yshift=0.8cm] (a4) {};
+
+		\draw[postaction={decorate}, ] (s1)--(a1);
+		\draw[postaction={decorate}, ] (a2)--(s1);
+		\draw[postaction={decorate}, ] (a3)--(s1);
+		\draw[postaction={decorate}, ] (s1)--(a4);
+
+
+    \node[right of=s1, xshift=0.2cm, yshift=0.4cm] (a1) {$\hat{E}_{\vec{r}, x}$};
+    \node[below of=s1, yshift=-0.2cm, xshift=0.8cm] (a2) {$\hat{E}_{\vec{r}-y, y}$};
+    \node[left of=s1, xshift=-0.2cm, yshift=0.4cm] (a3) {$\hat{E}_{\vec{r}-x, x}$};
+    \node[above of=s1, yshift=0.2cm, xshift=0.6cm] (a4) {$\hat{E}_{\vec{r}, y}$};
+
+
+	\end{tikzpicture}
+

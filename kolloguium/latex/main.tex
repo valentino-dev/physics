@@ -25,7 +25,7 @@
 
 \usetheme{Boadilla}
 \title{Bestimmung des Quark-Antiquark Potentials in der Hamiltonschen Formulierung der kompakten U(1) Eichtheorie}
-\author{Angelo Valentino Brade} %\institute{Rhenish Friedrich Wilhelm University of Bonn} \institute{University of Bonn} \date{\today}
+\author{Angelo Valentino Brade} %\institute{Rhenish Friedrich Wilhelm University of Bonn} \institute{University of Bonn} \date{30.09.2025}
 
 
 \makeatother
@@ -40,7 +40,7 @@
     \usebeamerfont{section in head/foot}\insertsectionhead
   \end{beamercolorbox}%
   \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
-    \usebeamerfont{title in head/foot}\insertshorttitle\hspace*{1em}
+    \usebeamerfont{title in head/foot}
     \insertframenumber{} / \inserttotalframenumber\hspace*{1ex}
   \end{beamercolorbox}}%
   \vskip0pt%
@@ -65,64 +65,29 @@
 \begin{frame}
 	\frametitle{Methoden für die Simulation in der Gitter Eichtheorie}
 	\begin{enumerate}
-		\item \textit{Markov chain Monte Carlo (MCMC)} im \textit{Lagrange Formalismus}
-		\item Diagonalisierung im \textit{Hamilton Formalismus}
-	\end{enumerate}
-	\begin{itemize}
-		\item Lagrange Formalismus wird mehr genutzt
+		\item \textit{Markov chain Monte Carlo (MCMC)} im \textit{Lagrange Formalismus}\\
 		      \begin{itemize}
-			      \item Hat aber das \textit{Sign Problem} für bestimmte Kopplungsregime, in welchem die Varianz nicht mehr abnimmt\\
-			            $\Rightarrow$ Hamiltonsche Formulierung ist notwendig
+			      \item wird am meisten genutzt
+			      \item hat \textit{Sign Problem} für bestimmte Kopplungsregime, weswegen die Varianz nicht mehr abnimmt
 		      \end{itemize}
-	\end{itemize}
+		\item Alternative: Diagonalisierung im \textit{Hamilton Formalismus}
+	\end{enumerate}
 \end{frame}
 
-\begin{frame}
-	\frametitle{Nachteil der Hamiltonschen Formulierung}
-	Das Wachstum der Dimension des Hamiltonians ist
-	\begin{itemize}
-		\item exponentiell mit Gittergröße
-		\item polynomiell mit \textit{Trunkierung}
-	\end{itemize}
-	$\Rightarrow$ sehr schnell sehr Ressourcenaufwendig
-\end{frame}
-
-\begin{frame}
-	\frametitle{Lösung durch Quantum Computing}
-	\begin{itemize}
-		\item exponentielle Rechengeschwindigkeit für Berechnungen mit quantenmechanischen Zuständen
-		\item Was genau ist aufwendig in der Hamiltonschen Formulierung? Diagonalisierung vom Hamiltonian
-	\end{itemize}
-	$\Rightarrow$ Variational Quantum Eigensolver (VQE)
-	\begin{itemize}
-		\item Herstellung von Quantum Devices noch sehr schwierig
-		\item Hamiltonsche Formulierung wegen Sign Problem aber immer relevant
-	\end{itemize}
-\end{frame}
 
 \begin{frame}
 	\frametitle{Ziel}
 	\begin{enumerate}
 		\item Hamiltonsche Formulierung verstehen
-		\item durch Trunkierung mit \textit{exact diagonalisation (ED)} die kompakte U(1) Eichtheorie simulieren
-		\item an Quark-Antiquark Potential demonstrieren
+		\item mit endlichem Gitter und Trunkierung den Hamiltonian der U(1) Theorie begrenzen
+		\item Hamiltonian berechnen und mit \textit{exact diagonalisation (ED)} diagonalisieren
+		\item Quark-Antiquark Potential bestimmen
 	\end{enumerate}
 \end{frame}
 
-\section{Diskretesierung}
+\section{Diskretisierung}
 \begin{frame}
-	\frametitle{Gitter}
-	\begin{columns}
-		\begin{column}{0.5\textwidth}
-			\large{Kontinuierlich}
-			\\[10pt]
-			\begin{figure}[h]
-				\includegraphics[width=1\textwidth]{Wohnzimmer-1-scaled.jpg}
-			\end{figure}
-			\tiny{Quelle: Farbmut, 5 Tipps - Räume größer wirken lassen}
-		\end{column}
-		\begin{column}{0.5\textwidth}
-			\large{Diskret}
+	\frametitle{Gitter (erste Diskretisierung)}
 			\begin{itemize}
 				\item Position: $(x, y)\in\mathbb{Z}^{n_x\times n_y}$
 				\item Richtung: $\mu\in \{x,y\}$
@@ -132,8 +97,6 @@
 					\input{tikz/nameing.tex}
 				\end{center}
 			\end{figure}
-		\end{column}
-	\end{columns}
 \end{frame}
 
 \begin{frame}
@@ -146,7 +109,7 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{$2\times2$ mit \textit{periodic boundary conditions (PBC)}}
+	\frametitle{\textit{Periodic boundary conditions (PBC)}}
 	\begin{figure}[h]
 		\begin{center}
 			\input{tikz/2x2pbc.tex}
@@ -157,14 +120,16 @@
 \section{Hamiltonsche Formulierung}
 \begin{frame}
 	\frametitle{Ladungen und Felder}
+	\begin{itemize}
+		\item Ladungen $Q_{\vec{r}}$ und $Q_{\vec{r}+y}$ an Site $\vec{r}$ und $\vec{r} + y$
+		\item kanonisch konjugierte Felder $\hat{E}_{\vec{r}, y}$ und $\hat{A}_{\vec{r}, y}$ am Link $\vec{r}, y$\\
+		      $\Rightarrow[\hat{E}_{\vec{r}_j, \mu}, \hat{A}_{\vec{r}_k, \nu}] = i\delta^{(3)}(\vec{r}_j-\vec{r}_k)\delta_{\mu\nu}$
+	\end{itemize}
 	\begin{columns}
 		\begin{column}{0.5\textwidth}
 			\begin{itemize}
-				\item Ladungen $Q_{\vec{r}}$ und $Q_{\vec{r}+y}$ an Site $\vec{r}$ und $\vec{r} + y$
-				\item kanonisch konjugierte Felder $\hat{E}_{\vec{r}, y}$ und $\hat{A}_{\vec{r}, y}$ am Link $\vec{r}, y$
 				\item $\vec{r} + y = (r_x, r_y + 1)$
-				\item $[\hat{E}_{\vec{r}_j, \mu}, \hat{A}_{\vec{r}_k, \nu}] = i\delta^{(3)}(\vec{r}_j-\vec{r}_k)\delta_{\mu\nu}$
-				\item $\hat{E}_{\vec{r}, \mu}\ket{\hat{e}_{\vec{r}, \mu}}=\hat{e}_{\vec{r}, \mu}\ket{\hat{e}_{\vec{r}, \mu}}$
+				\item $\hat{E}_{\vec{r}, \mu}\ket{\hat{e}_{\vec{r}, \mu}}=E_{\vec{r}, \mu}\ket{\hat{e}_{\vec{r}, \mu}}$
 			\end{itemize}
 		\end{column}
 		\begin{column}{0.5\textwidth}
@@ -176,37 +141,41 @@
 \end{frame}
 \begin{frame}
 	\frametitle{Link Operator}
-	\begin{columns}
-		\begin{column}{0.6\textwidth}
-			\begin{itemize}
-				\item $\hat{A}_{\vec{r}, \mu}$ generiert aus aus der Lie Algebra $\mathfrak{g}=$u(n) die Lie Gruppe G=U(n)
-				\item $\hat{U}_{\vec{r}, \mu}=\exp{(iag\hat{A}_{\vec{r}, \mu})}$ mit $ag\hat{A}_{\vec{r}, \mu}\in[0,2\pi)$ \\
-				      $\Rightarrow$ komakte U(1) Theorie
-				\item $[\hat{E}_{\vec{r}_{i}, \mu}, \hat{U}_{\vec{r}_{j}, \nu}]      =\delta^{(3)}(\vec{r}_{i}-\vec{r}_{j})\delta_{\mu\nu}\hat{U}_{\vec{r}_{j}, \nu}$
-				\item $[\hat{E}_{\vec{r}_{i}, \mu}, \hat{U}_{\vec{r}_{j}, \nu}^\dag] =-\delta^{(3)}(\vec{r}_{i}-\vec{r}_{j})\delta_{\mu\nu}\hat{U}_{\vec{r}_{j}, \nu}^{\dag}.$
-				\item $\Rightarrow \hat{U}_{\vec{r}, \mu}\ket{\hat{e}_{\vec{r}, \mu}}=\ket{\hat{e}_{\vec{r}, \mu}-1}$
-				\item $\Rightarrow \hat{U^\dag}_{\vec{r}, \mu}\ket{\hat{e}_{\vec{r}, \mu}}=\ket{\hat{e}_{\vec{r}, \mu}+1}$
-			\end{itemize}
-		\end{column}
-		\begin{column}{0.4\textwidth}
-		\end{column}
+	\begin{itemize}
+		\item $\hat{U}_{\vec{r}, \mu}=\exp{(iag\hat{A}_{\vec{r}, \mu})}$\\
+		      $\Rightarrow\hat{U}_{\vec{r}, \mu}\in$ U(n)
+		\item $\hat{A}_{\vec{r}, \mu}$ ist skalar\\
+		      $\Rightarrow$ U(1)
+		\item Forderung $ag\hat{A}_{\vec{r}, \mu}\in[0,2\pi)$\\
+		      $\Rightarrow$ Bild U(1) ist kompakt\\
+		      $\Rightarrow$ kompakte U(1) Eichtheorie
+		\item $\begin{cases}
+				      [\hat{E}_{\vec{r}_{i}, \mu}, \hat{U}_{\vec{r}_{j}, \nu}]      =\delta^{(3)}(\vec{r}_{i}-\vec{r}_{j})\delta_{\mu\nu}\hat{U}_{\vec{r}_{j}, \nu} \\
+				      [\hat{E}_{\vec{r}_{i}, \mu}, \hat{U}_{\vec{r}_{j}, \nu}^\dag] =-\delta^{(3)}(\vec{r}_{i}-\vec{r}_{j})\delta_{\mu\nu}\hat{U}_{\vec{r}_{j}, \nu}^{\dag}.
+			      \end{cases}$
+		\item $\Rightarrow\begin{cases}
+				      \hat{U}_{\vec{r}, \mu}\ket{\hat{e}_{\vec{r}, \mu}}=\ket{\hat{e}_{\vec{r}, \mu}-1} \\
+				      \hat{U^\dag}_{\vec{r}, \mu}\ket{\hat{e}_{\vec{r}, \mu}}=\ket{\hat{e}_{\vec{r}, \mu}+1}
+			      \end{cases}$
+	\end{itemize}
 
-	\end{columns}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Trunkierung}
+	\frametitle{Trunkierung (zweite Diskretisierung)}
+	\begin{itemize}
+		\item $ag\hat{A}_{\vec{r}, \mu}\in[0,2\pi)\rightarrow ag\hat{A}_{\vec{r}, \mu}\in[-l,l]$ mit Trunkierung $l$
+		      \\
+		      und $[-l,l]=\{-l,-l+1,\dots,l-1,l\}$\\
+		      $\Rightarrow e_{\vec{r}, \mu} \in [-l,l]$
+	\end{itemize}
 	\begin{columns}
-		\begin{column}{0.5\textwidth}
+		\begin{column}{0.6\textwidth}
 			\begin{itemize}
-				\item $ag\hat{A}_{\vec{r}, \mu}\in[0,2\pi)$\\
-				      $\rightarrow ag\hat{A}_{\vec{r}, \mu}\in[-l,l]$\\
-				      mit $[-l,l]=\{-l,-l+1,\dots,l-1,l\}$
-				\item $\Rightarrow e_{\vec{r}, \mu} \in [-l,l]$
 				\item nurnoch endlich viele Zustände an einem Link möglich: $N_Z=2l+1$
 			\end{itemize}
 		\end{column}
-		\begin{column}{0.5\textwidth}
+		\begin{column}{0.4\textwidth}
 			$\hat{U}_{\vec{r}, \mu}=\exp{(iag\hat{A}_{\vec{r}, \mu})}$\\
 			\,\\
 			U(1) $\subset \mathbb{C}, \{\frac{2\pi k}{2l+1}\}_{k\in\mathbb{Z}_{2l+1}}$\\
@@ -219,14 +188,14 @@
 
 \begin{frame}
 	\frametitle{Hamiltonian}
+	$\hat{H}=\frac{g^2}{2}\sum_{\vec{r}}(\hat{E}_{\vec{r}, x}^2+\hat{E}_{\vec{r}, y}^2)-\frac{1}{2a^2g^2}\sum_{\vec{r}}(\hat{P}_{\vec{r}}+\hat{P}_{\vec{r}}^\dag)$\\
+	mit $\hat{P}_{\vec{r}}=\hat{U}_{\vec{r}, x}\hat{U}_{\vec{r}+x,y}\hat{U}^{\dag}_{\vec{r}+y,x}\hat{U}^{\dag}_{\vec{r},y}$
+
 	\begin{columns}
 		\begin{column}{0.5\textwidth}
 			\begin{itemize}
-				\item $\hat{H}=\frac{g^2}{2}\sum_{\vec{r}}(\hat{E}_{\vec{r}, x}^2+\hat{E}_{\vec{r}, y}^2)-\frac{1}{2a^2g^2}\sum_{\vec{r}}(\hat{P}_{\vec{r}}+\hat{P}_{\vec{r}}^\dag)$\\
-				      mit $\hat{P}_{\vec{r}}=\hat{U}_{\vec{r}, x}\hat{U}_{\vec{r}+x,y}\hat{U}^{\dag}_{\vec{r}+y,x}\hat{U}^{\dag}_{\vec{r},y}$
-				\item $H_{ij}=\bra{i}\hat{H}\ket{j}$\\
-				      mit $\ket{j}\in\mathcal{H}$,\\
-              wobei $\ket{j}=\bigotimes_\text{links}\ket{e^{(j)}_{\vec{r}, \mu}}$
+				\item $H_{ij}=\bra{i}\hat{H}\ket{j}$ mit $\ket{j}\in\mathcal{C}$,\\
+				      wobei $\ket{j}=\bigotimes_\text{links}\ket{e^{(j)}_{\vec{r}, \mu}}$ und $\mathcal{C}$ der Konfigurationsraum des Gitters ist
 			\end{itemize}
 		\end{column}
 		\begin{column}{0.5\textwidth}
@@ -240,60 +209,110 @@
 
 \begin{frame}
 	\frametitle{Gaußsches Gesetz}
-	\begin{itemize}
-		\item Nicht alle Gitterzustände aus $\mathcal{H}$ möglich
-		\item Nur wenn die Felder sich zu der vorhernaden Ladung aufsummieren, physikalisch möglich $\Rightarrow \oint_A \vec{E} \cdot \text{d}\vec{A}=\frac{Q}{\epsilon_0} \rightarrow \left[\sum_{\mu\in\{x, y\}}(\hat{E}_{\vec{r}, \mu}^2-\hat{E}_{\vec{r}+\mu, \mu}^2)-Q_{\vec{r}}\right]\ket{\Psi}=0$
-		\item Felder $\ket{\Psi}$ sind physikalisch:\\
-		      $\ket{\Psi}\in\mathcal{H}_\text{phys}\subset\mathcal{H}$
-		\item Gaußsches Gesetz gilt an allen $N_S$ Gitterpunkten $\Rightarrow$ wir haben ein LGS aus $N_S$ Gleichungen
-		\item LGS ist unterbestimmt und kann nach E-Feldern aufgelöst werden, die frei wählbar sind und \textit{dynamic links} genannte werden
-		\item $\Rightarrow \hat{E}_{\vec{r}, \text{fixed}}$ sind Linearkombination aus dynamischen links
-		\item $\Rightarrow \hat{U}_{\vec{r}, \text{fixed}}$ müsse in den Plaquettes nicht mehr beachtet werden, da sie automatisch unphysikalische Gitterzustände erzeugen
-	\end{itemize}
+	$\oint_A \vec{E} \cdot \text{d}\vec{A}=\frac{Q}{\epsilon_0} \rightarrow \left[\sum_{\mu\in\{x, y\}}(\hat{E}_{\vec{r}, \mu}-\hat{E}_{\vec{r}-\mu, \mu})-Q_{\vec{r}}\right]\ket{\Psi}=0$
+
+	\begin{columns}
+		\begin{column}{0.7\textwidth}
+			\begin{itemize}
+				\item Nur Gitterzustände $\ket{\Psi}$ sind physikalisch: $\ket{\Psi}\in\mathcal{C}_\text{phys}\subset\mathcal{C}$
+				\item Gaußsches Gesetz gilt an allen Gitterpunkten $\Rightarrow$ LGS aus $n^2$ Gleichungen
+				\item LGS lösen
+			\end{itemize}
+		\end{column}
+
+		\begin{column}{0.3\textwidth}
+			\begin{figure}
+				\input{tikz/gauss.tex}
+			\end{figure}
+		\end{column}
+	\end{columns}
 \end{frame}
+
 \begin{frame}
-	\frametitle{Beispiel: $2\times2$}
+	\frametitle{Gaußsches Gesetz}
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}
+        \item Links mit frei wählbaren Variablen (E-Feldern: $\hat{E}_{\vec{r}, \text{dyn.}}$) heißen \textit{dynamic links}\\\vspace{10pt}
+				$\Rightarrow \hat{E}_{\vec{r}, \text{fixed}}$ sind Linearkombination aus $\hat{E}_{\vec{r}, \text{dyn.}}$\\\vspace{5pt}
+				$\Rightarrow \hat{U}_{\vec{r}, \text{fixed}}$ müsse in den Plaquettes nicht mehr beachtet werden, da sie automatisch unphysikalische Gitterzustände erzeugen. Sie würden den Eigenwert von $\hat{E}_{\vec{r}, \text{fixed}}$ ändern, ohne dass dynamische links angepasst werden.
+			\end{itemize}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\begin{figure}
+				\input{tikz/gauss2.tex}
+			\end{figure}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Beispiel: $2\times2$ ohne Ladung}
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}
+				\item Gaußsche Gesetze:
+				      \begin{align*}
+					      E_{(0, 0), x}+E_{(0,0), y}   & =0 \\
+					      E_{(0, 1), y}-E_{(0, 0), x}  & =0 \\
+					      -E_{(0, 1), y}-E_{(1, 0), x} & =0 \\
+					      E_{(1, 0), x}-E_{(0,0), y}   & =0
+				      \end{align*}
+				\item Lösung nach $E_{(0, 0), x}$:
+				      \begin{align*}
+					      E_{(0, 0), y} & =-E_{(0, 0), x} \\
+					      E_{(0, 1), y} & =E_{(0, 0), x}  \\
+					      E_{(1, 0), x} & =-E_{(0, 0), x}
+				      \end{align*}
+				\item $\Rightarrow \hat{E}_{(0, 0), x}$ ist dynamisch und nur $\hat{U}_{(0, 0), x}$ kann wirken
+			\end{itemize}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\input{tikz/gauss2.tex}
+		\end{column}
+	\end{columns}
+
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Beispiel: $2\times2$ ohne Ladung}
 	\begin{itemize}
-		\item Gaußsche Gesetze\\
-		      $E_{(0, 0), x}+E_{(0,0), y}=0$, $E_{(0, 1), y}-E_{(0, 0), x}=0$,\\
-		      $-E_{(0, 1), y}-E_{(1, 0), x}=0$ und $E_{(1, 0), x}-E_{(0,0), y}=0$\\
-		      $\Rightarrow E_{(0, 0), y}=-E_{(0, 0), x}, E_{(0, 1), y}=E_{(0, 0), x}, E_{(1, 0), x}=-E_{(0, 0), x}$\\
-		      $\Rightarrow \hat{E}_{(0, 0), x}$ ist dynamisch und nur $\hat{U}_{(0, 0), x}$ kann wirken
 		\item Trunkierung: $l=1$ $\Rightarrow 2l+1=3$\\
 		      $\Rightarrow$ Zustände $\ket{-1}, \ket{0}$ und $\ket{1}$ möglich
-		\item $H_{ij}=\bra{i}\hat{H}\ket{j}$ mit $a=1$ und $g=1$:\\
-		      $ \hat{H}=
+		\item $H_{ij}=\bra{i}\hat{H}\ket{j}$ mit $a=1$ und $g=1$\vspace{7pt}\\
+		      $ \Rightarrow \hat{H}=
 			      \begin{pmatrix}
 				      2           & \frac{1}{2} & 0           \\
 				      \frac{1}{2} & 0           & \frac{1}{2} \\
 				      0           & \frac{1}{2} & 2
-			      \end{pmatrix}
-			      \Rightarrow E_0=\num{2}$, $E_1\approx-\num{0.22}$, $E_2\approx\num{2.22}
-		      $
-        \item Da $E_1$ den kleinsten Wert hat, ist der Eigenvektor zu $E_1$ der Grundzustand des Gitters
-  \item Können wir jedes Gitter einfach auf Papier lösen?
+			      \end{pmatrix}$\vspace{7pt}\\
+		      $\Rightarrow E_0\approx-\num{0.22}$, $E_1=\num{2}$, $E_2\approx\num{2.22}$
+        \item $E_0$ am kleinsten $\Rightarrow$ Eigenvektor zu $E_0$ ist Grundzustand $\ket{\Psi_0}$
+          \begin{itemize}
+            \item kann genutzt werden, um Erwartungswert $\Braket{\hat{O}}=\bra{\Psi_0}\hat{O}\ket{\Psi_0}$ zu berechnen
+          \end{itemize}
 	\end{itemize}
-
 \end{frame}
 
 \section{Rechenaufwand}
 \begin{frame}
 	\frametitle{Hamiltonian Größe}
 	\begin{itemize}
-		\item Link kann in $N_Z=2l+1$ Zuständen sein
+		\item $N_Z=2l+1$ mit Trunkierung $l$
 		\item Anzahl an dynamischen Links: $N_{\text{L,dyn}}$=$N_L-N_{\text{Gleich.}}$
 		      \begin{enumerate}
-			      \item ohne PBC: $N_L=2n^2-2n$, mit PBC: $N_L=2n^2$
-			      \item $\sum_{\vec{r}}\sum_{\mu\in\{x, y\}}(\hat{E}_{\vec{r}, \mu}^2-\hat{E}_{\vec{r}+\mu, \mu}^2)\ket{\Psi}=\sum_{\vec{r}}Q_{\vec{r}}\ket{\Psi}$\\
-			            $\Rightarrow$ Gleichungen nur linear unabhängig, wenn Gesammtladung nicht Null\\
-			            $\Rightarrow$ wenn Gesammtladung Null ist, gibt es $N_{\text{Gleich.}}=n^2-1$ viele Gleichungen
+			      \item ohne PBC: $N_L=2n^2-2n$, mit PBC: $N_L=2n^2$\vspace{4pt}
+			      \item $\sum_{\vec{r}}\sum_{\mu\in\{x, y\}}(\hat{E}_{\vec{r}, \mu}^2-\hat{E}_{\vec{r}+\mu, \mu}^2)\ket{\Psi}=\sum_{\vec{r}}Q_{\vec{r}}\ket{\Psi}$\vspace{4pt}\\
+			            $\Rightarrow$ wenn Gesamtladung Null ist: $N_{\text{Gleich.}}=n^2-1$\vspace{7pt}
 		      \end{enumerate}
 		\item $N_{\text{phys}}=N_Z^{N_{\text{L, dyn}}}=
 			      \begin{cases}
 				      (2l+1)^{n^2+1} \text{ mit PBC} \\
 				      (2l+1)^{(n-1)^2} \text{ ohne PBC}
 			      \end{cases}
-		      $
+		      $\vspace{7pt}
 		\item unser Beispiel: $l=1$, $n=2$ ohne PBC $\Rightarrow N_\text{phys}=3$
 	\end{itemize}
 \end{frame}
@@ -331,34 +350,48 @@
 		\end{column}
 	\end{columns}
 \end{frame}
+
+
 \section{Resultate: Plaquette Erwartungswert}
 \begin{frame}
-	\begin{figure}[h]
-		\begin{center}
-			\input{tikz/plaquetteew.tex}
-		\end{center}
-		\caption{Plaquette Erwartungswerte für ein $2\times 2$ Gitter mit PBC.}\label{fig:2exp}
-	\end{figure}
+	\frametitle{$\Braket{P}$ für ein leeres $2\times2$ Gitter mit PBC}
+	\center\input{tikz/plaquetteew.tex}
 \end{frame}
 
 \begin{frame}
-	\begin{figure}[h]
-		\begin{center}
-			\includegraphics[width=0.8\textwidth]{images/PlaquetteExp3x3PBC.pdf}
-		\end{center}
-		\caption{Plaquette Erwartungswerte für ein $3\times 3$ Gitter mit PBC.}\label{fig:3exp}
-	\end{figure}
+	\frametitle{$\Braket{P}$ für ein leeres $3\times3$ Gitter mit PBC}
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			\center\includegraphics[width=1\textwidth]{images/arianna_ep.png}
+			Arianna Crippa et al. (2024), arxiv: 2404.17545
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\center\includegraphics[width=1\textwidth]{images/PlaquetteExp3x3PBC.pdf}
+			Diese Arbeit
+		\end{column}
+	\end{columns}
 \end{frame}
 
 \section{Resultate: Quark-Antiquark Potential}
 \begin{frame}
+	\frametitle{Quark-Antiquark Potential}
 	\begin{columns}
 		\begin{column}{0.3\textwidth}
 			\begin{itemize}
 				\item $V=\langle\hat{H}\rangle-\langle\hat{H}_0\rangle$
-        \item $g=\num{1}, a=\num{1}$
+				\item $a=\num{1}$
 				\item $3\times 3$
 			\end{itemize}
+		\end{column}
+		\begin{column}{0.8\textwidth}
+			\center\input{tikz/conf.tex}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\begin{column}{0.3\textwidth}
 			\scalebox{0.7}{
 				\input{tikz/3x3norm.tex}
 			}
@@ -366,19 +399,18 @@
 		\begin{column}{0.8\textwidth}
 			\begin{figure}[h]
 				\begin{center}
-					Quark-Antiquark Potential
+					\hspace{60pt}$g=\num{1}$
 					\includegraphics[width=0.7\textwidth]{images/quark_antiquark_potential_g_1.pdf}
 				\end{center}
 			\end{figure}
 		\end{column}
-
 	\end{columns}
 \end{frame}
 
 \begin{frame}
 	\begin{columns}
 		\begin{column}{0.5\textwidth}
-      \hspace{80pt}$g=\num{5}$
+			\hspace{80pt}$g=\num{5}$
 			\includegraphics[width=1\textwidth]{images/quark_antiquark_potential_g_5.pdf}
 		\end{column}
 		\begin{column}{0.5\textwidth}
@@ -405,16 +437,16 @@
 \begin{frame}
 	\frametitle{Outlook}
 	\begin{itemize}
-		\item VQE / Tensor Netzwerke
-		\item Größere Gitter
-		\item running coupling mit step scaling
-		\item Einheiten / Gitterabstand bestimmen
+		\item Nutzung von Quantum Computing mit VQE / Tensor Netzwerken
+		\item Implementierung größerer Gitter
+		\item Bestimmung des running couplings
+		\item Einheiten / Gitterabstand $a$ bestimmen
 		      \begin{itemize}
 			      \item schwer, da (2+1) Dimensional
 		      \end{itemize}
-		\item (3+1) Dimensional
-		\item an realen Werten kallibrieren und schwer messbare Potentiale ermitteln
-    \item SU(2), SU(3)
+		\item Erweiterung (3+1) Dimensional
+		\item Kalibrierung an realen Werten und Ermittelung schwer messbare Potentiale
+		\item SU(2), SU(3)
 	\end{itemize}
 \end{frame}
 
@@ -424,13 +456,5 @@
 		\center\input{tikz/outlook.tex}
 	\end{figure}
 \end{frame}
-
-\section{Abschluss}
-\begin{frame}
-	\,\\
-   \huge{\hspace{105pt}Vielen Dank für\\ \hspace{85pt}eure Aufmerksamkeit}
-
-\end{frame}
-
 \end{document}
 

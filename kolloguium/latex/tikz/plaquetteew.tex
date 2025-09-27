@@ -1,5 +1,6 @@
 \begin{tikzpicture}
-  \node[] (p) {\includegraphics[width=0.7\textwidth]{../images/PlaquetteExp2x2PBC.pdf}};
-  \node[above of=p, yshift=3cm] () {$\Braket{P} = \Braket{\sum_{\vec{r}}\frac{\hat{P}_{\vec{r}}+\hat{P}_{\vec{r}}^{\dag}}{2}}$, 
-  $\hat{H}=\frac{g^2}{2}\sum_{\vec{r}}(\hat{E}_{\vec{r}, x}^2+\hat{E}_{\vec{r}, y}^2)-\frac{1}{2a^2g^2}\sum_{\vec{r}}(\hat{P}_{\vec{r}}+\hat{P}_{\vec{r}}^\dag)$};
+	\node[] (p) {\includegraphics[width=0.7\textwidth]{../images/PlaquetteExp2x2PBC.pdf}};
+	\node[above of=p, yshift=2.6cm] (t1) {$\hat{H}=\frac{g^2}{2}\sum_{\vec{r}}(\hat{E}_{\vec{r}, x}^2+\hat{E}_{\vec{r}, y}^2)-\frac{1}{2a^2g^2}\sum_{\vec{r}}(\hat{P}_{\vec{r}}+\hat{P}_{\vec{r}}^\dag)$};
+
+	\node[above of=t1, yshift=-0.2cm] (t2) {$\Braket{P} = \bra{\Psi_0}\sum_{\vec{r}}\frac{\hat{P}_{\vec{r}}+\hat{P}_{\vec{r}}^{\dag}}{2}\ket{\Psi_0}$};
 \end{tikzpicture}

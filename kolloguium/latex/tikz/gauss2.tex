@@ -1,0 +1,47 @@
+
+\begin{tikzpicture}[thick,decoration={
+				markings,
+				mark=at position 0.5 with {\arrow{>}}}
+	]
+
+	\tikzset{
+		site/.style={
+				circle, draw=gray, fill=gray!20, line width=1.5pt, inner sep=0pt, outer sep=4pt, minimum size=0.4cm
+			},
+		pcharge/.style={
+				circle, draw=red, fill=red!20, line width=1.5pt, inner sep=0pt, outer sep=4pt, minimum size=0.4cm
+			},
+		ncharge/.style={
+				circle, draw=blue, fill=blue!20, line width=1.5pt, inner sep=0pt, outer sep=4pt, minimum size=0.4cm
+			},
+	}
+	\node[site](s1){};
+	\node[site, right=1.2cm of s1](s2){};
+	\node[site, above=1.2cm of s1](s3){};
+	\node[site, above=1.2cm of s2](s4){};
+
+  \node[above of=s1, xshift=-0.9cm] (e1) {$\hat{E}_{{(0,0)}, y}$};
+  \node[above of=s2, xshift=0.9cm] (e2) {$\hat{E}_{{(1,0)}, y}$};
+  \node[right of=s3, yshift=0.5cm] (e3) {$\hat{E}_{{(0,1)}, x}$};
+  \node[right of=s1, yshift=-0.5cm] (e4) {$\hat{E}_{{(0,0)}, x}$};
+
+	\draw[postaction={decorate}] (s1)--(s2);
+	\draw[postaction={decorate}] (s1)--(s3);
+	\draw[postaction={decorate}] (s3)--(s4);
+	\draw[postaction={decorate}] (s2)--(s4);
+
+  \node[above of=s3, yshift=1cm, xshift=1cm] (t1) {fixed links};
+
+	\draw[->] (t1) to[out=-90,in=90] (e3);
+	\draw[->] (t1) to[out=-45,in=90] (e2);
+	\draw[->] (t1) to[out=-135,in=90] (e1);
+
+
+  \node[below of=s1, yshift=-1cm, xshift=1cm] (t2) {dynamic links};
+
+	\draw[->] (t2) to[out=90,in=-90] (e4);
+
+  \node[above of=t1, xshift=-1cm] () {Beispiel: nach $\hat{E}_{(0,0), x}$ lösen};
+  
+\end{tikzpicture}
+
